@@ -64,7 +64,7 @@ namespace Projet_S4__3_
             MyImage image = new MyImage("coco.bmp");
             Process.Start("coco.bmp");
             Console.ReadKey();
-            image.Renforcement();
+            image.Agrandir2();
             image = new MyImage("newimage.bmp");
             image.Flou();
             Process.Start("newimage.bmp");
