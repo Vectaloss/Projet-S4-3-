@@ -11,52 +11,40 @@ namespace Projet_S4__3_
     class Program
     {
 
-        static void Lecture(string nom)
+        static void Fractaleee()
         {
-            byte[] myfile = File.ReadAllBytes(nom);
-            Console.WriteLine("\n Entête\n");
-            for (int i = 0; i < 14; i++)
-                Console.Write(myfile[i] + " ");
-            Console.WriteLine("\n infos entête\n");
-            for (int i = 14; i < 54; i++)
-                Console.Write(myfile[i] + " ");
-            Console.Write("\n Image \n");
-            for (int i = 54; i < myfile.Length; i++)
+            int largeur_cadre = 400;
+            int hauteur_cadre = 400;
+            MyImage fractale = new MyImage(largeur_cadre, hauteur_cadre);//ecrire ce constructeur avec une image blanche 
+            for (int i = 0; i < largeur_cadre; i++)
             {
-                // Console.Write(myfile[i] + " ");
+                for (int j = 0; j < hauteur_cadre; j++)
+                {
+                    double a = (double)(i - (largeur_cadre / 2)) / (double)(largeur_cadre / 4);
+                    double b = (double)(j - (hauteur_cadre / 2)) / (double)(hauteur_cadre / 4);
+                    Complexe c = new Complexe(a, b);
+                    Complexe z = new Complexe(0, 0);
+                    int it = 0;
+                    int it_max = 50;
+                    do
+                    {
+                        it++;
+                        z.Carre();
+                        z.Addition(c);
+                        /*if (z.Norme() > 2.0)
+                        {
+                            break;
+                        }*/
+                    }
+                    while (it < it_max);
+                    if ((it == it_max) && (z.Norme() < 6))
+                    {
+                        fractale.Image[j, i].Rouge = 0;
+                        fractale.Image[j, i].Vert = 0;
+                        fractale.Image[j, i].Bleu = 0;
+                    }
+                }
             }
-        }
-        static string decToBin(int dec)
-        {
-            string a = Convert.ToString(dec, 2);
-            while (a.Length < 8)
-                a = "0" + a;
-            return a;
-        }
-        static int Puissance(int puisance, int n)
-        {
-            if (n == 0)
-            {
-                return 1;
-            }
-            else
-            {
-                return puisance * Puissance(puisance, n - 1);
-            }
-        }
-        static int binToDec(string bin, string bin2)
-        {
-            int nombre = 0;
-            bin = bin + bin2;
-            for (int i = 0; i < bin.Length; i++)
-            {
-
-                if (bin[i] == '1')
-                    nombre += Puissance(2, bin.Length - i - 1);
-
-
-            }
-            return nombre;
         }
 
         static void Main(string[] args)
@@ -69,6 +57,8 @@ namespace Projet_S4__3_
             image.Flou();
             Process.Start("newimage.bmp");
             Console.ReadKey();
+           
+            
         }
 
     }
