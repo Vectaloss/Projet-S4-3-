@@ -404,7 +404,7 @@ namespace Projet_S4__3_
 
             //Divisions successives de la valeur de base pour la première opération puis du reste.
             for (int i = 0; i < 4; i++)
-            {
+            {//
                 Opti = Convert.ToInt32(Puissance(2, 8 * ((tab.Length - 1) - i)));
 
                 tab[tab.Length - 1 - i] = Convert.ToByte(a / Opti); // Fin/Début => Little Endian.
