@@ -550,7 +550,7 @@ namespace Projet_S4__3_
                             hist_R[index, x] = new Pixel(255, 0, 0);
                             index++;
                         }
-                    }
+                    }//lourd
                 }
             }
 
