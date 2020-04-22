@@ -517,7 +517,7 @@ namespace Projet_S4__3_
         }
         public void Histogramme()
         {
-            MyImage histo = new MyImage(10,10); //Remplacer comme pour fractale avec nouveau constructeur
+            MyImage histo = new MyImage(750,256); //Remplacer comme pour fractale avec nouveau constructeur
             Pixel[,] hist_R = new Pixel[250, 256]; 
             Pixel[,] hist_V = new Pixel[250, 256];
             Pixel[,] hist_B = new Pixel[250, 256];
@@ -615,6 +615,7 @@ namespace Projet_S4__3_
                     histo.image[i, j].Bleu = hist_B[i, j].Bleu;
                 }
             }
+            Enregistrement(histo.image);
             //Il faut afficher l'image et l'enregistrer
         }
     }
