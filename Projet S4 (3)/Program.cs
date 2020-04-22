@@ -44,7 +44,10 @@ namespace Projet_S4__3_
                         fractale.Image[j, i].Bleu = 0;
                     }
                 }
+                
             }
+            fractale.Enregistrement(fractale.Image);
+
         }
 
         static void Main(string[] args)
@@ -57,8 +60,9 @@ namespace Projet_S4__3_
              image.Flou();
              Process.Start("newimage.bmp"); */
 
-            MyImage image = new MyImage(10, 10);
-            image.Flou();
+            //
+            MyImage image = new MyImage(100, 100);
+            Fractaleee();
             Process.Start("newimage.bmp");
             Console.ReadKey();
            

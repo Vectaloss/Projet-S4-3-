@@ -446,7 +446,7 @@ namespace Projet_S4__3_
         {
             this.hauteur = hauteur;
             this.largeur = largeur;
-            this.tailleFichier = hauteur * largeur * 3 + 54 ;
+            this.tailleFichier = hauteur * largeur * 3 + 54  ;
             this.tailleOffset= 54;//rajoute
             this.nbBitCouleur = 24;
             Pixel[,] matRGB = new Pixel[this.largeur, this.hauteur];
