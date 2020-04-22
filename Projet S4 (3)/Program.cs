@@ -61,8 +61,9 @@ namespace Projet_S4__3_
              Process.Start("newimage.bmp"); */
 
             //
-            MyImage image = new MyImage(100, 100);
-            Fractaleee();
+            MyImage image = new MyImage("coco.bmp");
+            image.Histogramme();
+            //Fractaleee();
             Process.Start("newimage.bmp");
             Console.ReadKey();
            
