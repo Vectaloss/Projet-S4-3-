@@ -545,7 +545,7 @@ namespace Projet_S4__3_
                 {
                     for(int j=0;j<largeur;j++)
                     {
-                        if(x==image[i,j].Rouge)
+                        if(x==image[j,i].Rouge)
                         {
                             hist_R[index, x] = new Pixel(255, 0, 0);
                             index++;
@@ -571,7 +571,7 @@ namespace Projet_S4__3_
                 {
                     for (int j = 0; j< largeur; j++)
                     {
-                        if (x == image[i, j].Vert)
+                        if (x == image[j, i].Vert)
                         {
                             hist_V[index, x] = new Pixel(0, 255, 0);
                             index++;
@@ -597,7 +597,7 @@ namespace Projet_S4__3_
                 {
                     for (int j = 0; j < largeur; j++)
                     {
-                        if (x == image[i, j].Vert)
+                        if (x == image[j, i].Vert)
                         {
                             hist_B[index, x] = new Pixel(0, 0, 255);
                             index++;
