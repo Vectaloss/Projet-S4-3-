@@ -543,7 +543,7 @@ namespace Projet_S4__3_
             {
                 for(int i=0;i<hauteur;i++)
                 {
-                    for(int j=0;i<largeur;j++)
+                    for(int j=0;j<largeur;j++)
                     {
                         if(x==image[i,j].Rouge)
                         {
@@ -569,7 +569,7 @@ namespace Projet_S4__3_
             {
                 for (int i = 0; i < hauteur; i++)
                 {
-                    for (int j = 0; i < largeur; j++)
+                    for (int j = 0; j< largeur; j++)
                     {
                         if (x == image[i, j].Vert)
                         {
@@ -595,7 +595,7 @@ namespace Projet_S4__3_
             {
                 for (int i = 0; i < hauteur; i++)
                 {
-                    for (int j = 0; i < largeur; j++)
+                    for (int j = 0; j < largeur; j++)
                     {
                         if (x == image[i, j].Vert)
                         {
