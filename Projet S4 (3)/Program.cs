@@ -49,11 +49,15 @@ namespace Projet_S4__3_
 
         static void Main(string[] args)
         {
-            MyImage image = new MyImage("coco.bmp");
-            Process.Start("coco.bmp");
-            Console.ReadKey();
-            image.Agrandir2();
-            image = new MyImage("newimage.bmp");
+            /* MyImage image = new MyImage("coco.bmp");
+             Process.Start("coco.bmp");
+             Console.ReadKey();
+             image.Agrandir2();
+             image = new MyImage("newimage.bmp");
+             image.Flou();
+             Process.Start("newimage.bmp"); */
+
+            MyImage image = new MyImage(10, 10);
             image.Flou();
             Process.Start("newimage.bmp");
             Console.ReadKey();
