@@ -444,7 +444,20 @@ namespace Projet_S4__3_
         }
         public MyImage(int hauteur, int largeur)
         {
-            
+            this.hauteur = hauteur;
+            this.largeur = largeur;
+            this.tailleFichier = hauteur * largeur + ( 3 * 54 ) ;
+            this.tailleOffset= 54;//rajouter
+            this.nbBitCouleur = 24;
+            Pixel[,] matRGB = new Pixel[this.largeur, this.hauteur];
+            for (int i = 0; i < hauteur; i++)
+            {
+                for (int j = 0; j < largeur; j++) //on utilise ici un double index pour parcourir toute la matrice 
+                {
+                    matRGB[j, i] = new Pixel(255, 255, 255); 
+                }
+            }
+            this.image = matRGB;
         }
 
         public void Enregistrement(Pixel[,] newimage)
@@ -504,7 +517,7 @@ namespace Projet_S4__3_
         }
         public void Histogramme()
         {
-            MyImage histo = new MyImage(); //Remplacer comme pour fractale avec nouveau constructeur
+            MyImage histo = new MyImage(10,10); //Remplacer comme pour fractale avec nouveau constructeur
             Pixel[,] hist_R = new Pixel[250, 256]; 
             Pixel[,] hist_V = new Pixel[250, 256];
             Pixel[,] hist_B = new Pixel[250, 256];
