@@ -502,6 +502,107 @@ namespace Projet_S4__3_
             }
             File.WriteAllBytes("newimage.bmp", newfile);
         }
-        
+        public void Histogramme()
+        {
+            MyImage histo = new MyImage(); //Remplacer comme pour fractale avec nouveau constructeur
+            Pixel[,] hist_R = new Pixel[250, 256]; 
+            Pixel[,] hist_V = new Pixel[250, 256];
+            Pixel[,] hist_B = new Pixel[250, 256];
+            //Le 250 c'est la hauteur du cadre et 256 le nombre de bit
+
+            for(int i=0;i<250;i++)
+            {
+                for(int j=0;j<250;j++)
+                {
+                    hist_R[i, j] = new Pixel(255, 255, 255);
+                    hist_V[i, j] = new Pixel(255, 255, 255);
+                    hist_B[i, j] = new Pixel(255, 255, 255);
+                    //Je créer les 3 cadres blancs qui vont loger les histogrammes
+                    //On pourra en faire un qui regroupe les 3 ou les niveaux de gris
+                }
+            }
+            int index = 0;
+
+            //On va refaire 3 fois la même chose pour R,G et B
+
+            //Rouge
+            for(int x=0;x<256;x++) //ici x va parcours les différents valeurs que peut prendre un bit
+            {
+                for(int i=0;i<hauteur;i++)
+                {
+                    for(int j=0;i<largeur;j++)
+                    {
+                        if(x==image[i,j].Rouge)
+                        {
+                            hist_R[index, x] = new Pixel(255, 0, 0);
+                            index++;
+                        }
+                    }
+                }
+            }
+
+            for(int i=0;i<250;i++)
+            {
+                for(int j=0;j<256;j++)
+                {
+                    histo.image[i + 500, j].Rouge = hist_R[i, j].Rouge;
+                    histo.image[i + 500, j].Vert = hist_R[i, j].Vert;
+                    histo.image[i + 500, j].Bleu = hist_R[i, j].Bleu;
+                }
+            }
+
+            //Vert
+            for (int x = 0; x < 256; x++) //ici x va parcours les différents valeurs que peut prendre un bit
+            {
+                for (int i = 0; i < hauteur; i++)
+                {
+                    for (int j = 0; i < largeur; j++)
+                    {
+                        if (x == image[i, j].Vert)
+                        {
+                            hist_V[index, x] = new Pixel(0, 255, 0);
+                            index++;
+                        }
+                    }
+                }
+            }
+
+            for (int i = 0; i < 250; i++)
+            {
+                for (int j = 0; j < 256; j++)
+                {
+                    histo.image[i + 250, j].Rouge = hist_V[i, j].Rouge;
+                    histo.image[i + 250, j].Vert = hist_V[i, j].Vert;
+                    histo.image[i + 250, j].Bleu = hist_V[i, j].Bleu;
+                }
+            }
+
+            //Bleu
+            for (int x = 0; x < 256; x++) //ici x va parcours les différents valeurs que peut prendre un bit
+            {
+                for (int i = 0; i < hauteur; i++)
+                {
+                    for (int j = 0; i < largeur; j++)
+                    {
+                        if (x == image[i, j].Vert)
+                        {
+                            hist_B[index, x] = new Pixel(0, 0, 255);
+                            index++;
+                        }
+                    }
+                }
+            }
+
+            for (int i = 0; i < 250; i++)
+            {
+                for (int j = 0; j < 256; j++)
+                {
+                    histo.image[i, j].Rouge = hist_B[i, j].Rouge;
+                    histo.image[i, j].Vert = hist_B[i, j].Vert;
+                    histo.image[i, j].Bleu = hist_B[i, j].Bleu;
+                }
+            }
+            //Il faut afficher l'image et l'enregistrer
+        }
     }
 }
