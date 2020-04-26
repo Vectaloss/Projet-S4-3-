@@ -328,7 +328,6 @@ namespace Projet_S4__3_
         {  
             int larg = this.image.GetLength(0);
             int haut = this.image.GetLength(1);
-            Console.WriteLine(larg + " " + haut);
             MyImage newimage = new MyImage(2*larg,2*haut);
             
             int[,] moyennes = new int[larg, haut]; 
