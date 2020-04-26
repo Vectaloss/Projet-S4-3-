@@ -10,7 +10,7 @@ namespace Projet_S4__3_
 {
     class Program
     {
-        static string choixImage ()
+        static string choixImage()
         {
             ConsoleKeyInfo choixUtilisateur;
             Console.Clear();
@@ -24,7 +24,7 @@ namespace Projet_S4__3_
                 choixUtilisateur = Console.ReadKey(true);
             }
             while (choixUtilisateur.Key != ConsoleKey.A && choixUtilisateur.Key != ConsoleKey.B &&
-            choixUtilisateur.Key != ConsoleKey.C && choixUtilisateur.Key != ConsoleKey.D );
+            choixUtilisateur.Key != ConsoleKey.C && choixUtilisateur.Key != ConsoleKey.D);
 
             if (choixUtilisateur.Key == ConsoleKey.A)
             { return "coco.bmp"; }
@@ -35,13 +35,13 @@ namespace Projet_S4__3_
             else if (choixUtilisateur.Key == ConsoleKey.C)
             { return "lac_en_montagne.bmp"; }
 
-            else 
+            else
             { return "newimage.bmp"; }
 
 
-            
+
         }
-           
+
         static void Fractaleee()
         {
             int largeur_cadre = 400;
@@ -83,209 +83,232 @@ namespace Projet_S4__3_
 
         static void Main(string[] args)
         {
-            /* MyImage image = new MyImage("coco.bmp");
-             Process.Start("coco.bmp");
-             Console.ReadKey();
-             image.Agrandir2();
-             image = new MyImage("newimage.bmp");
-             image.Flou();
-             Process.Start("newimage.bmp"); 
-
-            //
-            MyImage image = new MyImage("coco.bmp");
-            image.Flou();
-            //Fractaleee();
-            Process.Start("newimage.bmp");
-            Console.ReadKey(); */
-            Console.Clear();
-            Console.WriteLine("Choissisez au clavier une des sous-parties :" +
-                "\n- Opérations géometriques    (a)" +
-                "\n- Gris et couleurs           (b)" +
-                "\n- Matrices de convolution    (c)" +
-                "\n- Innovations...             (d)" +
-                "\n- QR codes                   (e)"+
-              "\n\nFermer la console            (f)" );
-
-            ConsoleKeyInfo choixUtilisateur;
-            do
+            bool execute = true; 
+            while (execute == true)
             {
-                choixUtilisateur = Console.ReadKey(true);
-            }
-            while (choixUtilisateur.Key != ConsoleKey.A && choixUtilisateur.Key != ConsoleKey.B &&
-            choixUtilisateur.Key != ConsoleKey.C && choixUtilisateur.Key != ConsoleKey.D && choixUtilisateur.Key != ConsoleKey.E);
+                /* MyImage image = new MyImage("coco.bmp");
+                 Process.Start("coco.bmp");
+                 Console.ReadKey();
+                 image.Agrandir2();
+                 image = new MyImage("newimage.bmp");
+                 image.Flou();
+                 Process.Start("newimage.bmp"); 
 
-            if (choixUtilisateur.Key == ConsoleKey.A)
-            {
+                //
+                MyImage image = new MyImage("coco.bmp");
+                image.Flou();
+                //Fractaleee();
+                Process.Start("newimage.bmp");
+                Console.ReadKey(); */
                 Console.Clear();
-                Console.WriteLine("\n  [Opérations géometriques]" +
-                    "\n" + 
-                "\n- Miroir                      (a)" +
-                "\n- Agrandir                    (b)" +
-                "\n- Rotation                    (c)" +
-                "\n- Rétrécir horizontallement   (d)" +
-                "\n- Rétrécir verticallement     (e)" +
-                "\n- Rétrécir globalement        (f)");
+                Console.WriteLine("\nChoissisez au clavier une des sous-parties :\n" +
+                    "\n- Opérations géometriques    (a)" +
+                    "\n- Gris et couleurs           (b)" +
+                    "\n- Matrices de convolution    (c)" +
+                    "\n- Innovations...             (d)" +
+                    "\n- QR codes                   (e)" +
+                  "\n\nFermer la console            (f)");
+                ConsoleKeyInfo choixUtilisateur;
                 do
                 {
                     choixUtilisateur = Console.ReadKey(true);
                 }
                 while (choixUtilisateur.Key != ConsoleKey.A && choixUtilisateur.Key != ConsoleKey.B &&
-                choixUtilisateur.Key != ConsoleKey.C && choixUtilisateur.Key != ConsoleKey.D && choixUtilisateur.Key != ConsoleKey.E);
+                choixUtilisateur.Key != ConsoleKey.C && choixUtilisateur.Key != ConsoleKey.D && choixUtilisateur.Key != ConsoleKey.E && choixUtilisateur.Key != ConsoleKey.F);
 
                 if (choixUtilisateur.Key == ConsoleKey.A)
-                { 
-                    MyImage image = new MyImage(choixImage());
-                    image.Miroir();
-                    Process.Start("newimage.bmp");
+                {
+                    Console.Clear();
+                    Console.WriteLine("\n     [Opérations géometriques]" +
+                        "\n" +
+                    "\n- Miroir                      (a)" +
+                    "\n- Agrandir                    (b)" +
+                    "\n- Rotation                    (c)" +
+                    "\n- Rétrécir horizontallement   (d)" +
+                    "\n- Rétrécir verticallement     (e)" +
+                    "\n- Rétrécir globalement        (f)");
+                    do
+                    {
+                        choixUtilisateur = Console.ReadKey(true);
+                    }
+                    while (choixUtilisateur.Key != ConsoleKey.A && choixUtilisateur.Key != ConsoleKey.B &&
+                    choixUtilisateur.Key != ConsoleKey.C && choixUtilisateur.Key != ConsoleKey.D && choixUtilisateur.Key != ConsoleKey.E && choixUtilisateur.Key != ConsoleKey.F);
+
+                    if (choixUtilisateur.Key == ConsoleKey.A)
+                    {
+                        MyImage image = new MyImage(choixImage());
+                        image.Miroir();
+                        Process.Start("newimage.bmp");
+                    }
+
+                    if (choixUtilisateur.Key == ConsoleKey.B)
+                    {
+                        MyImage image = new MyImage(choixImage());
+                        image.Agrandir2();
+                        Process.Start("newimage.bmp");
+                    }
+
+                    if (choixUtilisateur.Key == ConsoleKey.C)
+                    {
+                        MyImage image = new MyImage(choixImage());
+                        image.Rotation(90);
+                        Process.Start("newimage.bmp");
+                    }
+
+                    if (choixUtilisateur.Key == ConsoleKey.D)
+                    {
+                        MyImage image = new MyImage(choixImage());
+                        image.Retrecicement(true);
+                        Process.Start("newimage.bmp");
+                    }
+
+                    if (choixUtilisateur.Key == ConsoleKey.E)
+                    {
+                        MyImage image = new MyImage(choixImage());
+                        image.Retrecicement(false);
+                        Process.Start("newimage.bmp");
+                    }
+
+                    if (choixUtilisateur.Key == ConsoleKey.F)
+                    {
+                        MyImage image = new MyImage(choixImage());
+                        image.Retrecicement(true);
+                        image = new MyImage("newimage.bmp");
+                        image.Retrecicement(false);
+                        Process.Start("newimage.bmp");
+                    }
                 }
 
                 if (choixUtilisateur.Key == ConsoleKey.B)
                 {
-                    MyImage image = new MyImage(choixImage());
-                    image.Agrandir2();
-                    Process.Start("newimage.bmp");
+                    Console.Clear();
+                    Console.WriteLine("\n  [Gris et couleurs]" +
+                         "\n" +
+                     "\n- Noir et blanc               (a)" +
+                     "\n- Nuances de gris             (b)" +
+                     "\n- Filtre couleur aléatoire    (c)" +
+                     "\n- Filtre 4 couleur            (d)");
+                    do
+                    {
+                        choixUtilisateur = Console.ReadKey(true);
+                    }
+                    while (choixUtilisateur.Key != ConsoleKey.A && choixUtilisateur.Key != ConsoleKey.B &&
+                    choixUtilisateur.Key != ConsoleKey.C && choixUtilisateur.Key != ConsoleKey.D);
+
+                    if (choixUtilisateur.Key == ConsoleKey.A)
+                    {
+                        MyImage image = new MyImage(choixImage());
+                        image.NoirEtBlanc();
+                        Process.Start("newimage.bmp");
+                    }
+
+                    if (choixUtilisateur.Key == ConsoleKey.B)
+                    {
+                        MyImage image = new MyImage(choixImage());
+                        image.NuancesDeGris();
+                        Process.Start("newimage.bmp");
+                    }
+
+                    if (choixUtilisateur.Key == ConsoleKey.C)
+                    {
+                        MyImage image = new MyImage(choixImage());
+                        //a faire 
+                        Process.Start("newimage.bmp");
+                    }
+
+                    if (choixUtilisateur.Key == ConsoleKey.D)
+                    {
+                        MyImage image = new MyImage(choixImage());
+                        image.Innovation1();
+                        Process.Start("newimage.bmp");
+                    }
                 }
 
                 if (choixUtilisateur.Key == ConsoleKey.C)
                 {
-                    MyImage image = new MyImage(choixImage());
-                    image.Rotation(90);
-                    Process.Start("newimage.bmp");
+                    Console.Clear();
+                    Console.WriteLine("");
+                    do
+                    {
+                        choixUtilisateur = Console.ReadKey(true);
+                    }
+                    while (choixUtilisateur.Key != ConsoleKey.A && choixUtilisateur.Key != ConsoleKey.B &&
+                    choixUtilisateur.Key != ConsoleKey.C && choixUtilisateur.Key != ConsoleKey.D && choixUtilisateur.Key != ConsoleKey.E);
+
+                    if (choixUtilisateur.Key == ConsoleKey.A)
+                    { }
+
+                    if (choixUtilisateur.Key == ConsoleKey.B)
+                    { }
+
+                    if (choixUtilisateur.Key == ConsoleKey.C)
+                    { }
+
+                    if (choixUtilisateur.Key == ConsoleKey.D)
+                    { }
+
+                    if (choixUtilisateur.Key == ConsoleKey.E)
+                    { }
                 }
 
                 if (choixUtilisateur.Key == ConsoleKey.D)
                 {
-                    MyImage image = new MyImage(choixImage());
-                    image.Retrecicement(true);
-                    Process.Start("newimage.bmp");
+                    Console.Clear();
+                    Console.WriteLine("");
+                    do
+                    {
+                        choixUtilisateur = Console.ReadKey(true);
+                    }
+                    while (choixUtilisateur.Key != ConsoleKey.A && choixUtilisateur.Key != ConsoleKey.B &&
+                    choixUtilisateur.Key != ConsoleKey.C && choixUtilisateur.Key != ConsoleKey.D && choixUtilisateur.Key != ConsoleKey.E);
+
+                    if (choixUtilisateur.Key == ConsoleKey.A)
+                    { }
+
+                    if (choixUtilisateur.Key == ConsoleKey.B)
+                    { }
+
+                    if (choixUtilisateur.Key == ConsoleKey.C)
+                    { }
+
+                    if (choixUtilisateur.Key == ConsoleKey.D)
+                    { }
+
+                    if (choixUtilisateur.Key == ConsoleKey.E)
+                    { }
                 }
 
                 if (choixUtilisateur.Key == ConsoleKey.E)
                 {
-                    MyImage image = new MyImage(choixImage());
-                    image.Retrecicement(false);
-                    Process.Start("newimage.bmp");
+                    Console.Clear();
+                    Console.WriteLine("");
+                    do
+                    {
+                        choixUtilisateur = Console.ReadKey(true);
+                    }
+                    while (choixUtilisateur.Key != ConsoleKey.A && choixUtilisateur.Key != ConsoleKey.B &&
+                    choixUtilisateur.Key != ConsoleKey.C && choixUtilisateur.Key != ConsoleKey.D && choixUtilisateur.Key != ConsoleKey.E);
+
+                    if (choixUtilisateur.Key == ConsoleKey.A)
+                    { }
+
+                    if (choixUtilisateur.Key == ConsoleKey.B)
+                    { }
+
+                    if (choixUtilisateur.Key == ConsoleKey.C)
+                    { }
+
+                    if (choixUtilisateur.Key == ConsoleKey.D)
+                    { }
+
+                    if (choixUtilisateur.Key == ConsoleKey.E)
+                    { }
                 }
 
                 if (choixUtilisateur.Key == ConsoleKey.F)
-                {
-                    MyImage image = new MyImage(choixImage());
-                    image.Retrecicement(true);
-                    image = new MyImage("newimage.bmp");
-                    image.Retrecicement(false);
-                    Process.Start("newimage.bmp");
-                }
+                    execute = false;
+
             }
-
-            if (choixUtilisateur.Key == ConsoleKey.B)
-            {
-                Console.Clear();
-                Console.WriteLine("");
-                do
-                {
-                    choixUtilisateur = Console.ReadKey(true);
-                }
-                while (choixUtilisateur.Key != ConsoleKey.A && choixUtilisateur.Key != ConsoleKey.B &&
-                choixUtilisateur.Key != ConsoleKey.C && choixUtilisateur.Key != ConsoleKey.D && choixUtilisateur.Key != ConsoleKey.E);
-
-                if (choixUtilisateur.Key == ConsoleKey.A)
-                { }
-
-                if (choixUtilisateur.Key == ConsoleKey.B)
-                { }
-
-                if (choixUtilisateur.Key == ConsoleKey.C)
-                { }
-
-                if (choixUtilisateur.Key == ConsoleKey.D)
-                { }
-
-                if (choixUtilisateur.Key == ConsoleKey.E)
-                { }
-            }
-
-            if (choixUtilisateur.Key == ConsoleKey.C)
-            {
-                Console.Clear();
-                Console.WriteLine("");
-                do
-                {
-                    choixUtilisateur = Console.ReadKey(true);
-                }
-                while (choixUtilisateur.Key != ConsoleKey.A && choixUtilisateur.Key != ConsoleKey.B &&
-                choixUtilisateur.Key != ConsoleKey.C && choixUtilisateur.Key != ConsoleKey.D && choixUtilisateur.Key != ConsoleKey.E);
-
-                if (choixUtilisateur.Key == ConsoleKey.A)
-                { }
-
-                if (choixUtilisateur.Key == ConsoleKey.B)
-                { }
-
-                if (choixUtilisateur.Key == ConsoleKey.C)
-                { }
-
-                if (choixUtilisateur.Key == ConsoleKey.D)
-                { }
-
-                if (choixUtilisateur.Key == ConsoleKey.E)
-                { }
-            }
-
-            if (choixUtilisateur.Key == ConsoleKey.D)
-            {
-                Console.Clear();
-                Console.WriteLine("");
-                do
-                {
-                    choixUtilisateur = Console.ReadKey(true);
-                }
-                while (choixUtilisateur.Key != ConsoleKey.A && choixUtilisateur.Key != ConsoleKey.B &&
-                choixUtilisateur.Key != ConsoleKey.C && choixUtilisateur.Key != ConsoleKey.D && choixUtilisateur.Key != ConsoleKey.E);
-
-                if (choixUtilisateur.Key == ConsoleKey.A)
-                { }
-
-                if (choixUtilisateur.Key == ConsoleKey.B)
-                { }
-
-                if (choixUtilisateur.Key == ConsoleKey.C)
-                { }
-
-                if (choixUtilisateur.Key == ConsoleKey.D)
-                { }
-
-                if (choixUtilisateur.Key == ConsoleKey.E)
-                { }
-            }
-
-            if (choixUtilisateur.Key == ConsoleKey.E)
-            {
-                Console.Clear();
-                Console.WriteLine("");
-                do
-                {
-                    choixUtilisateur = Console.ReadKey(true);
-                }
-                while (choixUtilisateur.Key != ConsoleKey.A && choixUtilisateur.Key != ConsoleKey.B &&
-                choixUtilisateur.Key != ConsoleKey.C && choixUtilisateur.Key != ConsoleKey.D && choixUtilisateur.Key != ConsoleKey.E);
-
-                if (choixUtilisateur.Key == ConsoleKey.A)
-                { }
-
-                if (choixUtilisateur.Key == ConsoleKey.B)
-                { }
-
-                if (choixUtilisateur.Key == ConsoleKey.C)
-                { }
-
-                if (choixUtilisateur.Key == ConsoleKey.D)
-                { }
-
-                if (choixUtilisateur.Key == ConsoleKey.E)
-                { }
-            }
-
-            Console.ReadKey();
         }
 
     }
