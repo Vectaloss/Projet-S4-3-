@@ -324,6 +324,37 @@ namespace Projet_S4__3_
             Enregistrement(Convolution(new int[3, 3] { { 0, 0, 0 }, { -1, 1, 0 }, { 0, 0, 0 } }, image));
         }
 
+        public void Innovation1()
+        {  
+            int larg = this.image.GetLength(0);
+            int haut = this.image.GetLength(1);
+            Console.WriteLine(larg + " " + haut);
+            MyImage newimage = new MyImage(2*larg,2*haut);
+            
+            int[,] moyennes = new int[larg, haut]; 
+            for (int i = 0; i < image.GetLength(0); i++)
+            {
+                for (int j = 0; j < image.GetLength(1); j++)
+                {
+                    int moyenne = (image[i, j].Rouge + image[i, j].Vert + image[i, j].Bleu) / 3; //on réutilise une partie de la fonction nuance de gris
+                    moyennes[i, j] = moyenne;
+                }
+            }
+
+
+            for (int i = 0; i<larg;i++)
+            {
+                for (int j = 0; j < haut; j++)
+                {
+                    newimage.image[i, j] = new Pixel(moyennes[i, j], moyennes[i, j]/5, moyennes[i, j] / 5); //on rajoute de petites valeurs pour que l'image soit plus claire
+                    newimage.image[i+ larg, j] = new Pixel(0, moyennes[i, j], 0);
+                    newimage.image[i, j + haut] = new Pixel(moyennes[i, j] / 3, moyennes[i, j] / 3, moyennes[i, j]); //pareil pour le bleu
+                    newimage.image[i + larg, j + haut] = new Pixel(0, moyennes[i, j], moyennes[i, j]);
+                }
+            }
+            Enregistrement(newimage.image);
+        }
+
 
         static Pixel[,] Convolution(int[,] matriceConvo, Pixel[,] image)
         {
@@ -442,17 +473,17 @@ namespace Projet_S4__3_
                 this.typeImage = ".bmp";
 
         }
-        public MyImage(int hauteur, int largeur)
+        public MyImage(int largeur, int hauteur)
         {
             this.hauteur = hauteur;
             this.largeur = largeur;
-            this.tailleFichier = hauteur * largeur * 3 + 54  ;
+            this.tailleFichier = largeur * hauteur * 3 + 54  ;
             this.tailleOffset= 54;//rajoute
             this.nbBitCouleur = 24;
             Pixel[,] matRGB = new Pixel[this.largeur, this.hauteur];
-            for (int i = 0; i < hauteur; i++)
+            for (int i = 0; i < this.hauteur; i++)
             {
-                for (int j = 0; j < largeur; j++) //on utilise ici un double index pour parcourir toute la matrice 
+                for (int j = 0; j < this.largeur; j++) //on utilise ici un double index pour parcourir toute la matrice 
                 {
                     matRGB[j, i] = new Pixel(255, 255, 255); 
                 }
@@ -543,14 +574,14 @@ namespace Projet_S4__3_
             {
                 for(int i=0;i<hauteur;i++)
                 {
-                    for(int j=0;j<largeur;j++)
+                    for (int j = 0; j < largeur; j++)
                     {
-                        if(x==image[j,i].Rouge)
+                        if (x == image[j, i].Rouge)
                         {
                             hist_R[index, x] = new Pixel(255, 0, 0);
                             index++;
                         }
-                    }//lourd
+                    }
                 }
             }
 
@@ -618,5 +649,7 @@ namespace Projet_S4__3_
             Enregistrement(histo.image);
             //Il faut afficher l'image et l'enregistrer
         }
+
+
     }
 }

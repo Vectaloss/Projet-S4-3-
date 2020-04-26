@@ -44,7 +44,7 @@ namespace Projet_S4__3_
                         fractale.Image[j, i].Bleu = 0;
                     }
                 }
-                
+
             }
             fractale.Enregistrement(fractale.Image);
 
@@ -62,12 +62,42 @@ namespace Projet_S4__3_
 
             //
             MyImage image = new MyImage("coco.bmp");
-            image.Histogramme();
+            image.Flou();
             //Fractaleee();
             Process.Start("newimage.bmp");
             Console.ReadKey();
-           
-            
+
+            Console.WriteLine("Choissisez au clavier une des sous-parties :" +
+                "\n- Opérations géometriques    (a)" +
+                "\n- Gris et couleurs           (b)" +
+                "\n- Matrices de convolution    (c)" +
+                "\n- Innovations...             (d)" +
+                "\n- QR codes                   (e)");
+
+            ConsoleKeyInfo choixUtilisateur;
+            do
+            {
+                choixUtilisateur = Console.ReadKey(true);
+            }
+            while (choixUtilisateur.Key != ConsoleKey.A && choixUtilisateur.Key != ConsoleKey.B &&
+            choixUtilisateur.Key != ConsoleKey.C && choixUtilisateur.Key != ConsoleKey.D && choixUtilisateur.Key != ConsoleKey.E);
+
+            if (choixUtilisateur.Key == ConsoleKey.A)
+            { }
+
+            if (choixUtilisateur.Key == ConsoleKey.B)
+            { }
+
+            if (choixUtilisateur.Key == ConsoleKey.C)
+            { }
+
+            if (choixUtilisateur.Key == ConsoleKey.D)
+            { }
+
+            if (choixUtilisateur.Key == ConsoleKey.E)
+            { }
+
+            Console.ReadKey();
         }
 
     }
