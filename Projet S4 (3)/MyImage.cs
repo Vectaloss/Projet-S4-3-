@@ -651,7 +651,7 @@ namespace Projet_S4__3_
 
         public void Histogramme2()
         {
-            MyImage histo = new MyImage(256, 250);
+            MyImage histo = new MyImage(256*3, 250);
             int nbPixels = this.image.GetLength(0) * this.image.GetLength(1) ;
 
             for (int x = 0; x < 256; x++)
@@ -681,10 +681,21 @@ namespace Projet_S4__3_
                     sommeVert = 249;
                 if (sommeBleu >= 250)
                     sommeBleu = 249;
-
-                histo.image[x, sommeVert] = new Pixel(0, 150, 0);
-                histo.image[x, sommeRouge] = new Pixel(255, 0, 0);
-                histo.image[x, sommeBleu] = new Pixel(0, 0, 255);
+                while (sommeVert > 0)
+                {
+                    histo.image[x, sommeVert] = new Pixel(0, 150, 0);
+                    sommeVert--;
+                }
+                while (sommeRouge > 0)
+                {
+                    histo.image[x + 256, sommeRouge] = new Pixel(255, 0, 0);
+                    sommeRouge--;
+                }
+                while (sommeBleu > 0)
+                {
+                    histo.image[x + 512, sommeBleu] = new Pixel(0, 0, 255);
+                    sommeBleu--;
+                }
             }
             Enregistrement(histo.image);
         }
