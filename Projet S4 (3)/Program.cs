@@ -227,7 +227,12 @@ namespace Projet_S4__3_
                 if (choixUtilisateur.Key == ConsoleKey.C)
                 {
                     Console.Clear();
-                    Console.WriteLine("");
+                    Console.WriteLine("\n  [Matrice de Convolution]" +
+                         "\n" +
+                     "\n- Détection des Contours      (a)" +
+                     "\n- Flou                        (b)" +
+                     "\n- Repoussage                  (c)" +
+                     "\n- Renforcement                (d)");
                     do
                     {
                         choixUtilisateur = Console.ReadKey(true);
@@ -236,19 +241,32 @@ namespace Projet_S4__3_
                     choixUtilisateur.Key != ConsoleKey.C && choixUtilisateur.Key != ConsoleKey.D && choixUtilisateur.Key != ConsoleKey.E);
 
                     if (choixUtilisateur.Key == ConsoleKey.A)
-                    { }
+                    {
+                        MyImage image = new MyImage(choixImage());
+                        image.DetectionContours();
+                        Process.Start("newimage.bmp");
+                    }
 
                     if (choixUtilisateur.Key == ConsoleKey.B)
-                    { }
+                    {
+                        MyImage image = new MyImage(choixImage());
+                        image.Flou();
+                        Process.Start("newimage.bmp");
+                    }
 
                     if (choixUtilisateur.Key == ConsoleKey.C)
-                    { }
+                    {
+                        MyImage image = new MyImage(choixImage());
+                        image.Repoussage();
+                        Process.Start("newimage.bmp");
+                    }
 
                     if (choixUtilisateur.Key == ConsoleKey.D)
-                    { }
-
-                    if (choixUtilisateur.Key == ConsoleKey.E)
-                    { }
+                    {
+                        MyImage image = new MyImage(choixImage());
+                        image.Renforcement();
+                        Process.Start("newimage.bmp");
+                    }
                 }
 
                 if (choixUtilisateur.Key == ConsoleKey.D)

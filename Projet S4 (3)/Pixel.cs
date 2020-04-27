@@ -10,6 +10,9 @@ namespace Projet_S4__3_
 {
     class Pixel
     {
+        /// <summary>
+        /// Classe Pixel pour commander les différentes couleurs
+        /// </summary>
         private int rouge, vert, bleu;
         public int Rouge
         {

@@ -8,32 +8,36 @@ namespace Projet_S4__3_
 {
     class Complexe
     {
+        /// <summary>
+        /// Méthode Complexe qui est utilisée pour la méthode fractale
+        /// </summary>
+        
         //Variables
-        public double a; //Réel
-        public double b; //Imagniaire de a+ib
+        public double x; //Réel
+        public double y; //Imagniaire de a+ib
 
         //Constructeur
-        public Complexe(double a, double b)
+        public Complexe(double x, double y)
         {
-            this.a = a;
-            this.b = b;
+            this.x = x;
+            this.y = y;
         }
 
         //Méthodes
         public void Carre()
         {
-            double valeurtemporaire = (a * a) - (b * b);
-            b = 2.0 * a * b;
-            a = valeurtemporaire;
+            double valeurtemporaire = (x * x) - (y * y);
+            y = 2.0 * x * y;
+            x = valeurtemporaire;
         }
         public double Norme()
         {
-            return Math.Sqrt((a * a) + (b * b));
+            return Math.Sqrt((x * x) + (y * y));
         }
         public void Addition(Complexe c)
         {
-            a += c.a;
-            b += c.b;
+            x += c.x;
+            y += c.y;
         }
     }
 }
