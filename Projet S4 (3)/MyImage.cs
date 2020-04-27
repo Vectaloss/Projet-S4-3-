@@ -325,12 +325,12 @@ namespace Projet_S4__3_
         }
 
         public void Innovation1()
-        {  
+        {
             int larg = this.image.GetLength(0);
             int haut = this.image.GetLength(1);
-            MyImage newimage = new MyImage(2*larg,2*haut);
-            
-            int[,] moyennes = new int[larg, haut]; 
+            MyImage newimage = new MyImage(2 * larg, 2 * haut);
+
+            int[,] moyennes = new int[larg, haut];
             for (int i = 0; i < image.GetLength(0); i++)
             {
                 for (int j = 0; j < image.GetLength(1); j++)
@@ -341,12 +341,12 @@ namespace Projet_S4__3_
             }
 
 
-            for (int i = 0; i<larg;i++)
+            for (int i = 0; i < larg; i++)
             {
                 for (int j = 0; j < haut; j++)
                 {
-                    newimage.image[i, j] = new Pixel(moyennes[i, j], moyennes[i, j]/5, moyennes[i, j] / 5); //on rajoute de petites valeurs pour que l'image soit plus claire
-                    newimage.image[i+ larg, j] = new Pixel(0, moyennes[i, j], 0);
+                    newimage.image[i, j] = new Pixel(moyennes[i, j], moyennes[i, j] / 5, moyennes[i, j] / 5); //on rajoute de petites valeurs pour que l'image soit plus claire
+                    newimage.image[i + larg, j] = new Pixel(0, moyennes[i, j], 0);
                     newimage.image[i, j + haut] = new Pixel(moyennes[i, j] / 3, moyennes[i, j] / 3, moyennes[i, j]); //pareil pour le bleu
                     newimage.image[i + larg, j + haut] = new Pixel(0, moyennes[i, j], moyennes[i, j]);
                 }
@@ -476,15 +476,15 @@ namespace Projet_S4__3_
         {
             this.hauteur = hauteur;
             this.largeur = largeur;
-            this.tailleFichier = largeur * hauteur * 3 + 54  ;
-            this.tailleOffset= 54;//rajoute
+            this.tailleFichier = largeur * hauteur * 3 + 54;
+            this.tailleOffset = 54;//rajoute
             this.nbBitCouleur = 24;
             Pixel[,] matRGB = new Pixel[this.largeur, this.hauteur];
             for (int i = 0; i < this.hauteur; i++)
             {
                 for (int j = 0; j < this.largeur; j++) //on utilise ici un double index pour parcourir toute la matrice 
                 {
-                    matRGB[j, i] = new Pixel(255, 255, 255); 
+                    matRGB[j, i] = new Pixel(255, 255, 255);
                 }
             }
             this.image = matRGB;
@@ -547,15 +547,15 @@ namespace Projet_S4__3_
         }
         public void Histogramme()
         {
-            MyImage histo = new MyImage(750,256); //Remplacer comme pour fractale avec nouveau constructeur
-            Pixel[,] hist_R = new Pixel[250, 256]; 
+            MyImage histo = new MyImage(750, 256); //Remplacer comme pour fractale avec nouveau constructeur
+            Pixel[,] hist_R = new Pixel[250, 256];
             Pixel[,] hist_V = new Pixel[250, 256];
             Pixel[,] hist_B = new Pixel[250, 256];
             //Le 250 c'est la hauteur du cadre et 256 le nombre de bit
 
-            for(int i=0;i<250;i++)
+            for (int i = 0; i < 250; i++)
             {
-                for(int j=0;j<250;j++)
+                for (int j = 0; j < 250; j++)
                 {
                     hist_R[i, j] = new Pixel(255, 255, 255);
                     hist_V[i, j] = new Pixel(255, 255, 255);
@@ -569,9 +569,9 @@ namespace Projet_S4__3_
             //On va refaire 3 fois la même chose pour R,G et B
 
             //Rouge
-            for(int x=0;x<256;x++) //ici x va parcours les différents valeurs que peut prendre un bit
+            for (int x = 0; x < 256; x++) //ici x va parcours les différents valeurs que peut prendre un bit
             {
-                for(int i=0;i<hauteur;i++)
+                for (int i = 0; i < hauteur; i++)
                 {
                     for (int j = 0; j < largeur; j++)
                     {
@@ -584,9 +584,9 @@ namespace Projet_S4__3_
                 }
             }
 
-            for(int i=0;i<250;i++)
+            for (int i = 0; i < 250; i++)
             {
-                for(int j=0;j<256;j++)
+                for (int j = 0; j < 256; j++)
                 {
                     histo.image[i + 500, j].Rouge = hist_R[i, j].Rouge;
                     histo.image[i + 500, j].Vert = hist_R[i, j].Vert;
@@ -599,7 +599,7 @@ namespace Projet_S4__3_
             {
                 for (int i = 0; i < hauteur; i++)
                 {
-                    for (int j = 0; j< largeur; j++)
+                    for (int j = 0; j < largeur; j++)
                     {
                         if (x == image[j, i].Vert)
                         {
@@ -649,6 +649,39 @@ namespace Projet_S4__3_
             //Il faut afficher l'image et l'enregistrer
         }
 
+        public void Histogramme2()
+        {
+            MyImage histo = new MyImage(256, 250);
+            int nbPixels = this.image.GetLength(0) * this.image.GetLength(1) ;
 
+            for (int x = 0; x < 256; x++)
+            {
+                int sommeRouge = 0;
+                int sommeVert = 0;
+                int sommeBleu = 0;
+                for (int i = 0; i < this.image.GetLength(0); i++)
+                {
+                    for (int j = 0; j < this.image.GetLength(1); j++)
+                    {
+                        if (this.image[i, j].Rouge == x)
+                            sommeRouge++;
+                        if (this.image[i, j].Vert == x)
+                            sommeVert++;
+                        if (this.image[i, j].Bleu == x)
+                            sommeBleu++;
+                    }
+                }
+
+                sommeRouge = sommeRouge / nbPixels * 250;
+                sommeVert = sommeVert / nbPixels * 250;
+                sommeBleu = sommeBleu / nbPixels * 250;
+
+                histo.image[x, sommeRouge] =new Pixel(255, 0, 0);
+                histo.image[x, sommeVert] = new Pixel(0, 255, 0);
+                histo.image[x, sommeBleu] = new Pixel(0, 0, 255);
+            }
+
+            Enregistrement(histo.image);
+        }
     }
 }

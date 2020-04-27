@@ -105,8 +105,8 @@ namespace Projet_S4__3_
                     "\n- Opérations géometriques    (a)" +
                     "\n- Gris et couleurs           (b)" +
                     "\n- Matrices de convolution    (c)" +
-                    "\n- Innovations...             (d)" +
-                    "\n- QR codes                   (e)" +
+                    "\n- Divers                     (d)" +
+                    "\n- Innovations...             (e)" +
                   "\n\nFermer la console            (f)");
                 ConsoleKeyInfo choixUtilisateur;
                 do
@@ -263,7 +263,11 @@ namespace Projet_S4__3_
                     choixUtilisateur.Key != ConsoleKey.C && choixUtilisateur.Key != ConsoleKey.D && choixUtilisateur.Key != ConsoleKey.E);
 
                     if (choixUtilisateur.Key == ConsoleKey.A)
-                    { }
+                    {
+                        MyImage image = new MyImage(choixImage());
+                        image.Histogramme2();
+                        Process.Start("newimage.bmp");
+                    }
 
                     if (choixUtilisateur.Key == ConsoleKey.B)
                     { }
