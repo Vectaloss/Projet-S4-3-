@@ -663,6 +663,7 @@ namespace Projet_S4__3_
                 {
                     for (int j = 0; j < this.image.GetLength(1); j++)
                     {
+                       // Console.WriteLine(this.image[i, j].Rouge);
                         if (this.image[i, j].Rouge == x)
                             sommeRouge++;
                         if (this.image[i, j].Vert == x)
@@ -671,16 +672,20 @@ namespace Projet_S4__3_
                             sommeBleu++;
                     }
                 }
+                sommeRouge = sommeRouge * 20000 / nbPixels ;
+                sommeVert = sommeVert * 20000 / nbPixels ;
+                sommeBleu = sommeBleu * 20000 / nbPixels ;
+                if (sommeRouge >= 250)
+                    sommeRouge = 249;
+                if (sommeVert >= 250)
+                    sommeVert = 249;
+                if (sommeBleu >= 250)
+                    sommeBleu = 249;
 
-                sommeRouge = sommeRouge / nbPixels * 250;
-                sommeVert = sommeVert / nbPixels * 250;
-                sommeBleu = sommeBleu / nbPixels * 250;
-
-                histo.image[x, sommeRouge] =new Pixel(255, 0, 0);
-                histo.image[x, sommeVert] = new Pixel(0, 255, 0);
+                histo.image[x, sommeVert] = new Pixel(0, 150, 0);
+                histo.image[x, sommeRouge] = new Pixel(255, 0, 0);
                 histo.image[x, sommeBleu] = new Pixel(0, 0, 255);
             }
-
             Enregistrement(histo.image);
         }
     }
