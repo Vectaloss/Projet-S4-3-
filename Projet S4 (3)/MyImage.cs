@@ -10,12 +10,21 @@ namespace Projet_S4__3_
 {
     class MyImage
     {
+        #region Variables
+
+        /// <summary>
+        /// Variables
+        /// </summary>
         private string typeImage;
         private int tailleFichier, tailleOffset, largeur, hauteur, nbBitCouleur;
         private Pixel[,] image;
 
+        #endregion
+
+        #region Propriétés
+
         /// <summary>
-        /// Variables
+        /// Propriétés
         /// </summary>
         public string TypeImage
         {
@@ -47,6 +56,10 @@ namespace Projet_S4__3_
             get { return this.nbBitCouleur; }
             set { this.nbBitCouleur = value; }
         }
+
+        #endregion
+
+        #region Constructeurs
 
         /// <summary>
         /// Constructeurs
@@ -100,11 +113,14 @@ namespace Projet_S4__3_
             this.image = matRGB;
         }
 
+        #endregion
+
+        #region Traitement d'image et convertions
+
         /// <summary>
         /// Méthodes de traitement d'image
         /// </summary>
         /// <param name="newimage"></param>
-      
         public void Enregistrement(Pixel[,] newimage)
         {
 
@@ -215,6 +231,10 @@ namespace Projet_S4__3_
             return tab;
         }
 
+        #endregion
+
+        #region Transformation d'image
+
         /// <summary>
         /// Transformation d'image
         /// </summary>
@@ -240,7 +260,7 @@ namespace Projet_S4__3_
 
             }
             Enregistrement(noirEtBlanc);
-        } //Modifie en Noir et Blanc
+        }///Modifie en Noir et Blanc
         public void NuancesDeGris()
         {
             Pixel[,] gris = new Pixel[image.GetLength(0), image.GetLength(1)]; // nécessaire pour que l'image soit de la même taille
@@ -254,7 +274,7 @@ namespace Projet_S4__3_
                 }
             }
             Enregistrement(gris);
-        } //Modifie en nuances de gris
+        }///Modifie en nuances de gris
         public void Retrecir()
         {
             Pixel[,] deZoom = new Pixel[image.GetLength(0) / 2, image.GetLength(1) / 2]; //Je divise la longueur  par deux
@@ -277,12 +297,12 @@ namespace Projet_S4__3_
                 }
             }
             Enregistrement(deZoom);
-        }  //methode temporaire
-        public void Retrecicement(bool sens) //true pour un retrecicement horizontale, false pour verticale.
+        }///Méthode  que l'on utilise pas
+        public void Retrecicement(bool sens) ///true pour un retrecicement horizontale, false pour verticale.
         {
             int newLarg = this.image.GetLength(0) / 2;
             int newHaut = this.image.GetLength(1) / 2;
-            //Je divise la largeur par deux 
+            ///Je divise la largeur par deux 
             if (sens)
             {
                 Pixel[,] deZoom = new Pixel[newLarg, this.image.GetLength(1)];
@@ -322,7 +342,7 @@ namespace Projet_S4__3_
 
 
         }
-        public void Agrandir() //format non pris en compte ? 
+        public void Agrandir()
         {
             Pixel[,] zoom = new Pixel[(image.GetLength(0) * 2) - 1, (image.GetLength(1) * 2) - 1];
             for (int i = 0; i < image.GetLength(0); i++)
@@ -372,7 +392,7 @@ namespace Projet_S4__3_
 
             Enregistrement(zoom);
 
-        }
+        }///Format non pris en compte ? A corriger mais cette méthode n'est pas utilisée
         public void Agrandir2()
         {
             Pixel[,] blankimage = new Pixel[image.GetLength(0) * 2, image.GetLength(1) * 2];
@@ -389,7 +409,7 @@ namespace Projet_S4__3_
 
             }
             Enregistrement(blankimage);
-        }
+        }/// Méthode finale pour agrandir une image
         public void Rotation(int angle)
         {
             Pixel[,] versionFinal = new Pixel[image.GetLength(0), image.GetLength(1)];
@@ -427,7 +447,24 @@ namespace Projet_S4__3_
             {
                 Console.WriteLine("Veuillez choisir entre 90, 180 et 270 degrés.");
             }
-        }
+        }/// Il faut faire pour n degrés
+        public void Rotation2(int angle)
+        {
+            Pixel[,] versionFinal = new Pixel[image.GetLength(0), image.GetLength(1)];
+            if (angle == 180)
+            {
+                for (int i = 0; i <= image.GetLength(0); i++)
+                {
+                    for (int j = 0; j <= image.GetLength(1); j++) //voir si (0) ou (1)
+                    {
+                        versionFinal[i, j] = image[image.GetLength(0) - i, image.GetLength(1) - j];//ici pareil
+                    }
+                }
+            }
+            
+        }/// N degrés
+        
+
         public void Miroir()
         {
             Pixel[,] miroir = new Pixel[image.GetLength(0), image.GetLength(1)];
@@ -440,7 +477,10 @@ namespace Projet_S4__3_
                 }
             }
             Enregistrement(miroir);
-        }
+        }///Cette méthode permet d'inver l'image comme dans un miroir
+        #endregion
+
+        #region Matrice de Convolution et Filtres 
 
         /// <summary>
         /// Matrice de convolution
@@ -524,9 +564,13 @@ namespace Projet_S4__3_
         {
             Enregistrement(Convolution(new int[3, 3] { { 0, 0, 0 }, { -1, 1, 0 }, { 0, 0, 0 } }, image));
         }
-       
+
+        #endregion
+
+        #region Fractale et Histogramme
+
         /// <summary>
-        /// Créer une image nouvelle
+        /// Divers : Fractale et Histogramme
         /// </summary>
         public void Histogramme()
         {
@@ -629,8 +673,10 @@ namespace Projet_S4__3_
                 }
             }
             Enregistrement(histo.image);
-            //Il faut afficher l'image et l'enregistrer
         }
+        /// <summary>
+        /// Première méthode pour l'histogramme qui ne fonctionne pas.
+        /// </summary>
         public void Histogramme2()
         {
             MyImage histo = new MyImage(256*3, 250);
@@ -681,6 +727,49 @@ namespace Projet_S4__3_
             }
             Enregistrement(histo.image);
         }
+        /// <summary>
+        /// Méthode Histogramme finale qui fonctionne
+        /// </summary>
+        public void Fractaleee()
+        {
+            int largeur_cadre = 400;
+            int hauteur_cadre = 400;
+            MyImage fractale = new MyImage(largeur_cadre, hauteur_cadre);//ecrire ce constructeur avec une image blanche 
+            for (int i = 0; i < largeur_cadre; i++)
+            {
+                for (int j = 0; j < hauteur_cadre; j++)
+                {
+                    double a = (double)(i - (largeur_cadre / 2)) / (double)(largeur_cadre / 4);
+                    double b = (double)(j - (hauteur_cadre / 2)) / (double)(hauteur_cadre / 4);
+                    Complexe c = new Complexe(a, b);
+                    Complexe z = new Complexe(0, 0);
+                    int it = 0;
+                    int it_max = 100;
+                    do
+                    {
+                        it++;
+                        z.Carre();
+                        z.Addition(c);
+                    }
+                    while (it < it_max);
+                    if ((it == it_max) && (z.Norme() < 6))
+                    {
+                        fractale.Image[j, i].Rouge = 0;
+                        fractale.Image[j, i].Vert = 0;
+                        fractale.Image[j, i].Bleu = 0;
+                    }
+                }
+                Enregistrement(fractale.image);
+            }
+
+        }
+        /// <summary>
+        /// Cette méthode permet d'afficher l'ensemble de Mandelbrot
+        /// </summary>
+        
+        #endregion
+
+        #region Innovations
 
         /// <summary>
         /// Innovation
@@ -714,5 +803,7 @@ namespace Projet_S4__3_
             }
             Enregistrement(newimage.image);
         }
+
+        #endregion
     }
 }

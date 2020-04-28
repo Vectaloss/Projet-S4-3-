@@ -12,18 +12,18 @@ namespace Projet_S4__3_
         /// Méthode Complexe qui est utilisée pour la méthode fractale
         /// </summary>
         
-        //Variables
-        public double x; //Réel
-        public double y; //Imagniaire de a+ib
+        ///Variables
+        public double x; ///Réel
+        public double y; ///Imagniaire de a+ib
 
-        //Constructeur
+        ///Constructeur
         public Complexe(double x, double y)
         {
             this.x = x;
             this.y = y;
         }
 
-        //Méthodes
+        ///Méthodes
         public void Carre()
         {
             double valeurtemporaire = (x * x) - (y * y);

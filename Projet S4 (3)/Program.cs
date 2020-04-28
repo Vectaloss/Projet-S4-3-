@@ -15,10 +15,10 @@ namespace Projet_S4__3_
             ConsoleKeyInfo choixUtilisateur;
             Console.Clear();
             Console.WriteLine("Choissisez l'image à traiter :" +
-                "\n- Coco                            (a)" +
-                "\n- Lena                            (b)" +
-                "\n- Lac en montagne                 (c)" +
-                "\n- Le dernier résultat             (d)");
+                "\n- Coco                                                                   (a)" +
+                "\n- Lena                                                                   (b)" +
+                "\n- Lac en montagne                                                        (c)" +
+                "\n- Le dernier résultat ou une image blanche pour fractale et histogramme  (d)"); 
             do
             {
                 choixUtilisateur = Console.ReadKey(true);
@@ -35,71 +35,22 @@ namespace Projet_S4__3_
             else if (choixUtilisateur.Key == ConsoleKey.C)
             { return "lac_en_montagne.bmp"; }
 
-            else
+            else 
             { return "newimage.bmp"; }
 
-
-
         }
-
-        static void Fractaleee()
-        {
-            int largeur_cadre = 400;
-            int hauteur_cadre = 400;
-            MyImage fractale = new MyImage(largeur_cadre, hauteur_cadre);//ecrire ce constructeur avec une image blanche 
-            for (int i = 0; i < largeur_cadre; i++)
-            {
-                for (int j = 0; j < hauteur_cadre; j++)
-                {
-                    double a = (double)(i - (largeur_cadre / 2)) / (double)(largeur_cadre / 4);
-                    double b = (double)(j - (hauteur_cadre / 2)) / (double)(hauteur_cadre / 4);
-                    Complexe c = new Complexe(a, b);
-                    Complexe z = new Complexe(0, 0);
-                    int it = 0;
-                    int it_max = 50;
-                    do
-                    {
-                        it++;
-                        z.Carre();
-                        z.Addition(c);
-                        /*if (z.Norme() > 2.0)
-                        {
-                            break;
-                        }*/
-                    }
-                    while (it < it_max);
-                    if ((it == it_max) && (z.Norme() < 6))
-                    {
-                        fractale.Image[j, i].Rouge = 0;
-                        fractale.Image[j, i].Vert = 0;
-                        fractale.Image[j, i].Bleu = 0;
-                    }
-                }
-
-            }
-            fractale.Enregistrement(fractale.Image);
-
-        }
+        /// <summary>
+        /// Cette méthode permet de choisir une image parmis les différentes disponibles
+        /// </summary>
+        /// <param name="args"></param>
+        
 
         static void Main(string[] args)
         {
             bool execute = true; 
             while (execute == true)
             {
-                /* MyImage image = new MyImage("coco.bmp");
-                 Process.Start("coco.bmp");
-                 Console.ReadKey();
-                 image.Agrandir2();
-                 image = new MyImage("newimage.bmp");
-                 image.Flou();
-                 Process.Start("newimage.bmp"); 
-
-                //
-                MyImage image = new MyImage("coco.bmp");
-                image.Flou();
-                //Fractaleee();
-                Process.Start("newimage.bmp");
-                Console.ReadKey(); */
+                #region Menu Textuel
                 Console.Clear();
                 Console.WriteLine("\nChoissisez au clavier une des sous-parties :\n" +
                     "\n- Opérations géometriques    (a)" +
@@ -113,11 +64,14 @@ namespace Projet_S4__3_
                 {
                     choixUtilisateur = Console.ReadKey(true);
                 }
+                #endregion
+
                 while (choixUtilisateur.Key != ConsoleKey.A && choixUtilisateur.Key != ConsoleKey.B &&
                 choixUtilisateur.Key != ConsoleKey.C && choixUtilisateur.Key != ConsoleKey.D && choixUtilisateur.Key != ConsoleKey.E && choixUtilisateur.Key != ConsoleKey.F);
 
                 if (choixUtilisateur.Key == ConsoleKey.A)
                 {
+                    #region Menu Textuel
                     Console.Clear();
                     Console.WriteLine("\n     [Opérations géometriques]" +
                         "\n" +
@@ -127,6 +81,9 @@ namespace Projet_S4__3_
                     "\n- Rétrécir horizontallement   (d)" +
                     "\n- Rétrécir verticallement     (e)" +
                     "\n- Rétrécir globalement        (f)");
+                    #endregion
+
+                    #region Boutons pour lancer les méthodes
                     do
                     {
                         choixUtilisateur = Console.ReadKey(true);
@@ -139,35 +96,35 @@ namespace Projet_S4__3_
                         MyImage image = new MyImage(choixImage());
                         image.Miroir();
                         Process.Start("newimage.bmp");
-                    }
+                    }///Miroir
 
                     if (choixUtilisateur.Key == ConsoleKey.B)
                     {
                         MyImage image = new MyImage(choixImage());
                         image.Agrandir2();
                         Process.Start("newimage.bmp");
-                    }
+                    }///Agrandir
 
                     if (choixUtilisateur.Key == ConsoleKey.C)
                     {
                         MyImage image = new MyImage(choixImage());
                         image.Rotation(90);
                         Process.Start("newimage.bmp");
-                    }
+                    }///Rotations
 
                     if (choixUtilisateur.Key == ConsoleKey.D)
                     {
                         MyImage image = new MyImage(choixImage());
                         image.Retrecicement(true);
                         Process.Start("newimage.bmp");
-                    }
+                    }///Rétrécissement Horizontal
 
                     if (choixUtilisateur.Key == ConsoleKey.E)
                     {
                         MyImage image = new MyImage(choixImage());
                         image.Retrecicement(false);
                         Process.Start("newimage.bmp");
-                    }
+                    }///Rétrécissement Vertical
 
                     if (choixUtilisateur.Key == ConsoleKey.F)
                     {
@@ -176,11 +133,14 @@ namespace Projet_S4__3_
                         image = new MyImage("newimage.bmp");
                         image.Retrecicement(false);
                         Process.Start("newimage.bmp");
-                    }
-                }
+                    }///Rétrécissement Global
+                    #endregion
+
+                }///Opérations géométriques
 
                 if (choixUtilisateur.Key == ConsoleKey.B)
                 {
+                    #region Menu Textuel
                     Console.Clear();
                     Console.WriteLine("\n  [Gris et couleurs]" +
                          "\n" +
@@ -188,6 +148,9 @@ namespace Projet_S4__3_
                      "\n- Nuances de gris             (b)" +
                      "\n- Filtre couleur aléatoire    (c)" +
                      "\n- Filtre 4 couleur            (d)");
+                    #endregion
+
+                    #region Boutons pour lancer les méthodes
                     do
                     {
                         choixUtilisateur = Console.ReadKey(true);
@@ -200,14 +163,14 @@ namespace Projet_S4__3_
                         MyImage image = new MyImage(choixImage());
                         image.NoirEtBlanc();
                         Process.Start("newimage.bmp");
-                    }
+                    }///Filtre noir et blanc
 
                     if (choixUtilisateur.Key == ConsoleKey.B)
                     {
                         MyImage image = new MyImage(choixImage());
                         image.NuancesDeGris();
                         Process.Start("newimage.bmp");
-                    }
+                    }///Filtre nuances de gris
 
                     if (choixUtilisateur.Key == ConsoleKey.C)
                     {
@@ -215,17 +178,13 @@ namespace Projet_S4__3_
                         //a faire 
                         Process.Start("newimage.bmp");
                     }
+                    #endregion
 
-                    if (choixUtilisateur.Key == ConsoleKey.D)
-                    {
-                        MyImage image = new MyImage(choixImage());
-                        image.Innovation1();
-                        Process.Start("newimage.bmp");
-                    }
-                }
+                }///Gris et couleurs
 
                 if (choixUtilisateur.Key == ConsoleKey.C)
                 {
+                    #region Menu Textuel
                     Console.Clear();
                     Console.WriteLine("\n  [Matrice de Convolution]" +
                          "\n" +
@@ -233,6 +192,9 @@ namespace Projet_S4__3_
                      "\n- Flou                        (b)" +
                      "\n- Repoussage                  (c)" +
                      "\n- Renforcement                (d)");
+                    #endregion
+
+                    #region Boutons pour lancer les méthodes
                     do
                     {
                         choixUtilisateur = Console.ReadKey(true);
@@ -245,34 +207,43 @@ namespace Projet_S4__3_
                         MyImage image = new MyImage(choixImage());
                         image.DetectionContours();
                         Process.Start("newimage.bmp");
-                    }
+                    } ///Détection des contours
 
                     if (choixUtilisateur.Key == ConsoleKey.B)
                     {
                         MyImage image = new MyImage(choixImage());
                         image.Flou();
                         Process.Start("newimage.bmp");
-                    }
+                    }///Flou
 
                     if (choixUtilisateur.Key == ConsoleKey.C)
                     {
                         MyImage image = new MyImage(choixImage());
                         image.Repoussage();
                         Process.Start("newimage.bmp");
-                    }
+                    }///Repoussage
 
                     if (choixUtilisateur.Key == ConsoleKey.D)
                     {
                         MyImage image = new MyImage(choixImage());
                         image.Renforcement();
                         Process.Start("newimage.bmp");
-                    }
-                }
+                    }///Renforcement
+                    #endregion
+
+                }///Matrice de convolution
 
                 if (choixUtilisateur.Key == ConsoleKey.D)
                 {
+                    #region Menu Textuel
                     Console.Clear();
-                    Console.WriteLine("");
+                    Console.WriteLine("\n  [Divers]" +
+                         "\n" +
+                     "\n- Histogramme                 (a)" +
+                     "\n- Fractale                    (b)");
+                    #endregion
+
+                    #region Boutons pour lancer les méthodes
                     do
                     {
                         choixUtilisateur = Console.ReadKey(true);
@@ -285,25 +256,29 @@ namespace Projet_S4__3_
                         MyImage image = new MyImage(choixImage());
                         image.Histogramme2();
                         Process.Start("newimage.bmp");
-                    }
+                    } ///Histogramme
 
                     if (choixUtilisateur.Key == ConsoleKey.B)
-                    { }
+                    {
+                        MyImage image = new MyImage(choixImage());
+                        image.Fractaleee();
+                        Process.Start("newimage.bmp");
+                    }
+                    #endregion
 
-                    if (choixUtilisateur.Key == ConsoleKey.C)
-                    { }
-
-                    if (choixUtilisateur.Key == ConsoleKey.D)
-                    { }
-
-                    if (choixUtilisateur.Key == ConsoleKey.E)
-                    { }
-                }
+                } ///Divers
 
                 if (choixUtilisateur.Key == ConsoleKey.E)
                 {
+                    #region Menu Textuel
                     Console.Clear();
-                    Console.WriteLine("");
+                    Console.WriteLine("\n  [Innovations]" +
+                         "\n" +
+                     "\n- Filtre 4 couleurs           (a)" +
+                     "\n-                       (b)");
+                    #endregion
+
+                    #region Boutons pour lancer les méthodes
                     do
                     {
                         choixUtilisateur = Console.ReadKey(true);
@@ -311,27 +286,23 @@ namespace Projet_S4__3_
                     while (choixUtilisateur.Key != ConsoleKey.A && choixUtilisateur.Key != ConsoleKey.B &&
                     choixUtilisateur.Key != ConsoleKey.C && choixUtilisateur.Key != ConsoleKey.D && choixUtilisateur.Key != ConsoleKey.E);
 
-                    if (choixUtilisateur.Key == ConsoleKey.A)
-                    { }
+                    if (choixUtilisateur.Key == ConsoleKey.A) 
+                    {
+                        MyImage image = new MyImage(choixImage());
+                        image.Innovation1();
+                        Process.Start("newimage.bmp");
+                    } /// Filtre 4 couleurs / Innovation
 
                     if (choixUtilisateur.Key == ConsoleKey.B)
                     { }
+                    #endregion
 
-                    if (choixUtilisateur.Key == ConsoleKey.C)
-                    { }
+                } ///Innovations
 
-                    if (choixUtilisateur.Key == ConsoleKey.D)
-                    { }
-
-                    if (choixUtilisateur.Key == ConsoleKey.E)
-                    { }
-                }
-
-                if (choixUtilisateur.Key == ConsoleKey.F)
+                if (choixUtilisateur.Key == ConsoleKey.F) /// Pour fermer la console et mettre fin au programme
                     execute = false;
 
             }
         }
-
     }
 }
