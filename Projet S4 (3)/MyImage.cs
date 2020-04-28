@@ -732,9 +732,8 @@ namespace Projet_S4__3_
         /// </summary>
         public void Fractaleee()
         {
-            int largeur_cadre = 400;
-            int hauteur_cadre = 400;
-            MyImage fractale = new MyImage(largeur_cadre, hauteur_cadre);//ecrire ce constructeur avec une image blanche 
+            int largeur_cadre = this.image.GetLength(0);
+            int hauteur_cadre = this.image.GetLength(1);
             for (int i = 0; i < largeur_cadre; i++)
             {
                 for (int j = 0; j < hauteur_cadre; j++)
@@ -754,12 +753,12 @@ namespace Projet_S4__3_
                     while (it < it_max);
                     if ((it == it_max) && (z.Norme() < 6))
                     {
-                        fractale.Image[j, i].Rouge = 0;
-                        fractale.Image[j, i].Vert = 0;
-                        fractale.Image[j, i].Bleu = 0;
+                        this.Image[j, i].Rouge = 0;
+                        this.Image[j, i].Vert = 0;
+                        this.Image[j, i].Bleu = 0;
                     }
                 }
-                Enregistrement(fractale.image);
+                Enregistrement(this.image);
             }
 
         }
@@ -802,6 +801,51 @@ namespace Projet_S4__3_
                 }
             }
             Enregistrement(newimage.image);
+        }
+        public void Innovation2()
+        {
+            Random r  = new Random();
+            int nbRepetition =  r.Next(20, 50);
+            while (nbRepetition > 0)
+            {
+                int [] positions = new int[4]; //respectivement Xa,Ya,Xb,Yb
+                for (int i = 0; i<4; i++)
+                {
+                    positions[i] = r.Next(0, 2*this.image.GetLength(0));
+                    positions[i] -= this.image.GetLength(0);
+                    if (positions[i] < 0)
+                        positions[i] = 0;
+                    if (positions[i] >= this.image.GetLength(0))
+                        positions[i] = this.image.GetLength(0) - 1;
+                }
+                int[] couleurs = new int[3];
+                for (int i = 0; i < 3; i++)
+                {
+                   couleurs[i] = r.Next(0,255);
+                }
+                if (positions[0] > positions[2])
+                {
+                    int a = positions[0];
+                    positions[0] = positions[2];
+                    positions[2] = a; }
+                if (positions[1] > positions[3])
+                {
+                    int a = positions[1];
+                    positions[1] = positions[3];
+                    positions[3] = a;
+                }
+                if (positions[0] != positions[2]  && positions[1] != positions[3])
+                for (int i = 0; i < this.image.GetLength(0); i++)
+                {
+                    for (int j = 0; j < this.image.GetLength(0); j++)
+                    {
+                        if (positions[0] <= i && positions[2] >= i && positions[1] <= j && positions[3] >= j)
+                            this.image[i, j] = new Pixel(couleurs[0], couleurs[1], couleurs[2]);
+                    }
+                }
+                nbRepetition--;
+            }
+            Enregistrement(this.image);
         }
 
         #endregion

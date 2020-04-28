@@ -257,14 +257,18 @@ namespace Projet_S4__3_
                     if (choixUtilisateur.Key == ConsoleKey.A)
                     {
                         MyImage image = new MyImage(choixImage());
+                        Console.Clear();
+                        Console.WriteLine("\nChargement... Veuillez patienter svp.");
                         image.Histogramme2();
                         Process.Start("newimage.bmp");
                     } ///Histogramme
 
                     if (choixUtilisateur.Key == ConsoleKey.B)
                     {
-                        MyImage image = new MyImage(choixImage());
-                        image.Fractaleee();
+                        MyImage fractale = new MyImage(400, 400);
+                        Console.Clear();
+                        Console.WriteLine("\nChargement... Veuillez patienter svp.");
+                        fractale.Fractaleee();
                         Process.Start("newimage.bmp");
                     }
                     #endregion
@@ -286,8 +290,8 @@ namespace Projet_S4__3_
                     {
                         choixUtilisateur = Console.ReadKey(true);
                     }
-                    while (choixUtilisateur.Key != ConsoleKey.A && choixUtilisateur.Key != ConsoleKey.B &&
-                    choixUtilisateur.Key != ConsoleKey.C && choixUtilisateur.Key != ConsoleKey.D && choixUtilisateur.Key != ConsoleKey.E);
+                    while (choixUtilisateur.Key != ConsoleKey.A && choixUtilisateur.Key != ConsoleKey.B /*&&
+                    choixUtilisateur.Key != ConsoleKey.C && choixUtilisateur.Key != ConsoleKey.D && choixUtilisateur.Key != ConsoleKey.E*/);
 
                     if (choixUtilisateur.Key == ConsoleKey.A) 
                     {
@@ -297,7 +301,11 @@ namespace Projet_S4__3_
                     } /// Filtre 4 couleurs / Innovation
 
                     if (choixUtilisateur.Key == ConsoleKey.B)
-                    { }
+                    {
+                        MyImage image = new MyImage(500,500);
+                        image.Innovation2();
+                        Process.Start("newimage.bmp");
+                    }
                     #endregion
 
                 } ///Innovations
