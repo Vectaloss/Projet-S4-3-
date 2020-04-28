@@ -450,20 +450,53 @@ namespace Projet_S4__3_
         }/// Il faut faire pour n degrés
         public void Rotation2(int angle)
         {
-            Pixel[,] versionFinal = new Pixel[image.GetLength(0), image.GetLength(1)];
-            if (angle == 180)
+            /// Nouveau Tableau
+            Pixel[,] copie = new Pixel[image.GetLength(0), image.GetLength(1)];
+
+            /// Coordonnées Polaires
+            for (int i = 0; i < image.GetLength(0); i++)
             {
-                for (int i = 0; i <= image.GetLength(0); i++)
+                for (int j = 0; j < image.GetLength(1); j++)
                 {
-                    for (int j = 0; j <= image.GetLength(1); j++) //voir si (0) ou (1)
+                    /// Le centre de l'image est le repère
+                    int x = j - (image.GetLength(1) / 2);
+                    int y = i - (image.GetLength(0) / 2);
+
+                    /// Nouvelles coordonnées avec la formule
+                    int k = Convert.ToInt32(x * Math.Cos((angle * 180) / Math.PI) + (y * Math.Sin((angle * 180) / Math.PI)));
+                    int l = Convert.ToInt32((y * Math.Cos((angle * 180) / Math.PI)) - (x * Math.Sin((angle * 180) / Math.PI)));
+
+                    /// Adaptation du repère avec notre matrice de pixel
+                    int m = (image.GetLength(0) / 2) - k;
+                    int o = l + (image.GetLength(1) / 2);
+
+                    /// Remplir nouveau tableau avec nouvelles coordonnées
+                    if (m > 0 && m < image.GetLength(0) && o > 0 && o < image.GetLength(1) && copie[m, o] == null)
                     {
-                        versionFinal[i, j] = image[image.GetLength(0) - i, image.GetLength(1) - j];//ici pareil
+                        copie[m, o] = new Pixel(image[i, j].Rouge, image[i, j].Vert, image[i, j].Bleu);
                     }
                 }
             }
-            
+            for (int i = 0; i < image.GetLength(0); i++)
+                for (int j = 0; j < image.GetLength(1); j++)
+                {
+                    if (copie[i, j] != null)
+                    {
+                        image[i, j].Rouge = copie[i, j].Rouge;
+                        image[i, j].Vert = copie[i, j].Vert;
+                        image[i, j].Bleu = copie[i, j].Bleu;
+                    }
+                    else
+                    {
+                        /// On met les autre pixel d'une couleur
+                        image[i, j].Rouge = 255;
+                        image[i, j].Vert = 255;
+                        image[i, j].Bleu = 255;
+                    }
+                }
+            Enregistrement(copie);
         }/// N degrés
-        
+
 
         public void Miroir()
         {

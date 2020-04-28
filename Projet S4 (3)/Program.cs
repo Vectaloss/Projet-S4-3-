@@ -282,7 +282,7 @@ namespace Projet_S4__3_
                     Console.WriteLine("\n  [Innovations]" +
                          "\n" +
                      "\n- Filtre 4 couleurs           (a)" +
-                     "\n-                       (b)");
+                     "\n- Images aléatoires           (b)");
                     #endregion
 
                     #region Boutons pour lancer les méthodes
