@@ -111,7 +111,7 @@ namespace Projet_S4__3_
                     if (choixUtilisateur.Key == ConsoleKey.C)
                     {
                         MyImage image = new MyImage(choixImage());
-                        image.Rotation(90);
+                        image.Rotation2(4);
                         Process.Start("newimage.bmp");
                     }///Rotations
 
