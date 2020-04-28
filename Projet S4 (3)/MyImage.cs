@@ -497,6 +497,37 @@ namespace Projet_S4__3_
             Enregistrement(copie);
         }/// N degrés
 
+        public void Rotation3(int angle)
+        {
+            int diagonale = Convert.ToInt32(Math.Sqrt((hauteur * hauteur) + (largeur * largeur)));
+            if (diagonale % 4 != 0)
+                diagonale = diagonale - diagonale % 4 + 4;
+            Pixel[,] copie = new Pixel[diagonale,diagonale];
+            for (int i = 0; i < diagonale; i++)
+            {
+                for (int j = 0; j < diagonale; j++)
+                {
+                    copie[i, j] = new Pixel(255, 255, 255);
+                }
+            }
+            for (int i = 0; i < image.GetLength(0); i++)
+            {
+                for (int j = 0; j < image.GetLength(1); j++)
+                {
+                    int x = j - (image.GetLength(1) / 2);
+                    int y = i - (image.GetLength(0) / 2);
+
+                    int k = Convert.ToInt32(x * Math.Cos((angle * 180) / Math.PI) + (y * Math.Sin((angle * 180) / Math.PI)));
+                    int l = Convert.ToInt32((y * Math.Cos((angle * 180) / Math.PI)) - (x * Math.Sin((angle * 180) / Math.PI)));
+
+                    int m = (copie.GetLength(0) / 2) - k;
+                    int o = l + (copie.GetLength(1) / 2);
+                    copie[m, o] = new Pixel(image[i, j].Rouge, image[i, j].Vert, image[i, j].Bleu);
+                }
+            }
+            Enregistrement(copie);
+        }
+
 
         public void Miroir()
         {
