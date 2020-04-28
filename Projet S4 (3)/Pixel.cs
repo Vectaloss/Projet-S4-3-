@@ -8,7 +8,7 @@ using System.Diagnostics;
 
 namespace Projet_S4__3_
 {
-    class Pixel
+    public class Pixel
     {
         /// <summary>
         /// Classe Pixel pour commander les différentes couleurs

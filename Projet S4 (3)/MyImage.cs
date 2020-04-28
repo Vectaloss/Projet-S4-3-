@@ -8,7 +8,7 @@ using System.Diagnostics;
 
 namespace Projet_S4__3_
 {
-    class MyImage
+    public class MyImage
     {
         #region Variables
 
@@ -72,26 +72,26 @@ namespace Projet_S4__3_
         public MyImage(string fichier)
         {
             byte[] myfile = File.ReadAllBytes(fichier);
-            this.tailleFichier = myfile.Length; //taille de l'image en octet //c'est pas bon, bytes 2 à 5
-            this.tailleOffset = Convert_Endian_To_Int(myfile, 10, 13); //peut etre 14 à 17
-            this.largeur = Convert_Endian_To_Int(myfile, 18, 21); //Largeur de l'image en pixels
-            this.hauteur = Convert_Endian_To_Int(myfile, 22, 25);//hauteur de l'image en pixels
-            this.nbBitCouleur = Convert_Endian_To_Int(myfile, 28, 29);//Nombre de bits codant chaque couleur 
+            this.tailleFichier = myfile.Length; ///taille de l'image en octet //c'est pas bon, bytes 2 à 5
+            this.tailleOffset = Convert_Endian_To_Int(myfile, 10, 13); ///peut etre 14 à 17
+            this.largeur = Convert_Endian_To_Int(myfile, 18, 21); ///Largeur de l'image en pixels
+            this.hauteur = Convert_Endian_To_Int(myfile, 22, 25);///hauteur de l'image en pixels
+            this.nbBitCouleur = Convert_Endian_To_Int(myfile, 28, 29);///Nombre de bits codant chaque couleur 
             Pixel[,] matRGB = new Pixel[this.largeur, this.hauteur];
 
-            int index = 54; //c'est l'index qui servira qui parcours le tableau "myfile"
+            int index = 54; ///c'est l'index qui servira qui parcours le tableau "myfile"
             for (int i = 0; i < hauteur; i++)
             {
-                for (int j = 0; j < largeur; j++) //on utilise ici un double index pour parcourir toute la matrice 
+                for (int j = 0; j < largeur; j++) ///on utilise ici un double index pour parcourir toute la matrice 
                 {
-                    matRGB[j, i] = new Pixel(myfile[index], myfile[index + 1], myfile[index + 2]); //l'index est la position de l'octet de la première couleur, et les "+1" et "+2" servent à acceder aux deux autres couleurs
-                    index += 3; //on ajoute 3 pour acceder à la première couleur du prochain pixel
+                    matRGB[j, i] = new Pixel(myfile[index], myfile[index + 1], myfile[index + 2]); ///l'index est la position de l'octet de la première couleur, et les "+1" et "+2" servent à acceder aux deux autres couleurs
+                    index += 3; ///on ajoute 3 pour acceder à la première couleur du prochain pixel
 
                 }
             }
             this.image = matRGB;
 
-            if (myfile[0] == 66 && myfile[1] == 77) //si les lettres encodées sont "B" et "M" c'est un fichier bitmap
+            if (myfile[0] == 66 && myfile[1] == 77) ///si les lettres encodées sont "B" et "M" c'est un fichier bitmap
                 this.typeImage = ".bmp";
 
         }

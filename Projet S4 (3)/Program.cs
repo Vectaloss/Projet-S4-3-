@@ -10,6 +10,10 @@ namespace Projet_S4__3_
 {
     class Program
     {
+        /// <summary>
+        /// Cette méthode permet de choisir une image parmis les différentes disponibles
+        /// </summary>
+        /// <param name="args"></param>
         static string choixImage()
         {
             ConsoleKeyInfo choixUtilisateur;
@@ -39,12 +43,11 @@ namespace Projet_S4__3_
             { return "newimage.bmp"; }
 
         }
+        
         /// <summary>
-        /// Cette méthode permet de choisir une image parmis les différentes disponibles
+        /// Main qui permet de lancer toutes les méthodes
         /// </summary>
         /// <param name="args"></param>
-        
-
         static void Main(string[] args)
         {
             bool execute = true; 
