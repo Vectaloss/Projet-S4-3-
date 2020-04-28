@@ -845,7 +845,7 @@ namespace Projet_S4__3_
                 for (int i = 0; i<4; i++)
                 {
                     positions[i] = r.Next(0, 2*this.image.GetLength(0));
-                    positions[i] -= this.image.GetLength(0);
+                    positions[i] -= Convert.ToInt32(0.5 * this.image.GetLength(0));
                     if (positions[i] < 0)
                         positions[i] = 0;
                     if (positions[i] >= this.image.GetLength(0))
