@@ -867,6 +867,19 @@ namespace Projet_S4__3_
                     positions[1] = positions[3];
                     positions[3] = a;
                 }
+                if (nbRepetition < 8)
+                {
+                    if (positions[2] - positions[0] > 0.2 * this.image.GetLength(0))
+                    {
+                        int diff = r.Next(0, Convert.ToInt32(0.2 * this.image.GetLength(0)));
+                        positions[2] = positions[0] + diff;
+                    }
+                    if (positions[3] - positions[1] > 0.2 * this.image.GetLength(0))
+                    {
+                        int diff = r.Next(0, Convert.ToInt32(0.2 * this.image.GetLength(0)));
+                        positions[3] = positions[1] + diff;
+                    }
+                }
                 if (positions[0] != positions[2]  && positions[1] != positions[3])
                 for (int i = 0; i < this.image.GetLength(0); i++)
                 {
