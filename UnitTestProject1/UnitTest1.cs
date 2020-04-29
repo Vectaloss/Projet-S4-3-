@@ -9,7 +9,9 @@ namespace UnitTestProject1
     public class UnitTest1
     {
         [TestMethod]
-        public void TestMethod1() ///Ce test regarde si les deux images ont la même hauteur et largeur
+
+        ///Ce test regarde si les deux images ont la même hauteur et largeur
+        public void TestMethod1()
         {
             MyImage image1 = new MyImage(200, 600);
             MyImage image2 = new MyImage(200,600);
@@ -20,8 +22,11 @@ namespace UnitTestProject1
             Assert.AreEqual(length2, length1);
             Assert.AreEqual(height1, height2);
         }
+
         [TestMethod]
-        public void TestMethod2()///Ce test va comparer la taille des fichiers et retourner vrai si elles sont différentes
+
+        ///Ce test va comparer la taille des fichiers et retourner vrai si elles sont différentes
+        public void TestMethod2()
         {
             MyImage test1 = new MyImage(300,400);
             MyImage test2 = new MyImage(150, 300);

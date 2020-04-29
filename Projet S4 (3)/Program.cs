@@ -270,7 +270,7 @@ namespace Projet_S4__3_
                         Console.WriteLine("\nChargement... Veuillez patienter svp.");
                         fractale.Fractaleee();
                         Process.Start("newimage.bmp");
-                    }
+                    }///Fractale
                     #endregion
 
                 } ///Divers

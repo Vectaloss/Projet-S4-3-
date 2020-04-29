@@ -591,7 +591,7 @@ namespace Projet_S4__3_
         /// <returns></returns>
         static Pixel[,] Convolution(int[,] matriceConvo, Pixel[,] image)
         {
-            Pixel[,] imageContour = new Pixel[image.GetLength(0) + 2, image.GetLength(1) + 2]; //on rajoute un contour blanc a l'image
+            Pixel[,] imageContour = new Pixel[image.GetLength(0) + 2, image.GetLength(1) + 2]; ///on rajoute un contour blanc a l'image
             for (int i = 0; i < imageContour.GetLength(0); i++)
             {
                 for (int j = 0; j < imageContour.GetLength(1); j++)
@@ -866,20 +866,6 @@ namespace Projet_S4__3_
         /// <summary>
         /// Cette méthode permet d'afficher l'ensemble de Mandelbrot
         /// </summary>
-
-        public void Stenographie(MyImage image2)
-        {
-            Pixel[,] versionFinal = new Pixel[image.GetLength(0), image.GetLength(1)];
-            for (int i = 0; i < image.GetLength(0); i++)
-            {
-                for (int j = 0; j < image.GetLength(1); i++)
-                {
-
-
-                }
-            }
-            Enregistrement(newCache);
-        }
 
         #endregion
 
