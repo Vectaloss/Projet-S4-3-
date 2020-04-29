@@ -22,7 +22,7 @@ namespace Projet_S4__3_
                 "\n- Coco                                                                   (a)" +
                 "\n- Lena                                                                   (b)" +
                 "\n- Lac en montagne                                                        (c)" +
-                "\n- Le dernier résultat ou une image blanche pour fractale et histogramme  (d)"); 
+                "\n- Le dernier résultat                                                    (d)"); 
             do
             {
                 choixUtilisateur = Console.ReadKey(true);
