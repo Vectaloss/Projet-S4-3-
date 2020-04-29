@@ -149,8 +149,7 @@ namespace Projet_S4__3_
                          "\n" +
                      "\n- Noir et blanc               (a)" +
                      "\n- Nuances de gris             (b)" +
-                     "\n- Filtre couleur aléatoire    (c)" +
-                     "\n- Filtre 4 couleur            (d)");
+                     "\n- Filtre 4 couleur            (c)");
                     #endregion
 
                     #region Boutons pour lancer les méthodes
@@ -159,7 +158,7 @@ namespace Projet_S4__3_
                         choixUtilisateur = Console.ReadKey(true);
                     }
                     while (choixUtilisateur.Key != ConsoleKey.A && choixUtilisateur.Key != ConsoleKey.B &&
-                    choixUtilisateur.Key != ConsoleKey.C && choixUtilisateur.Key != ConsoleKey.D);
+                    choixUtilisateur.Key != ConsoleKey.C );
 
                     if (choixUtilisateur.Key == ConsoleKey.A)
                     {
@@ -178,7 +177,7 @@ namespace Projet_S4__3_
                     if (choixUtilisateur.Key == ConsoleKey.C)
                     {
                         MyImage image = new MyImage(choixImage());
-                        //a faire 
+                        image.Innovation1();
                         Process.Start("newimage.bmp");
                     }
                     #endregion
@@ -203,7 +202,7 @@ namespace Projet_S4__3_
                         choixUtilisateur = Console.ReadKey(true);
                     }
                     while (choixUtilisateur.Key != ConsoleKey.A && choixUtilisateur.Key != ConsoleKey.B &&
-                    choixUtilisateur.Key != ConsoleKey.C && choixUtilisateur.Key != ConsoleKey.D && choixUtilisateur.Key != ConsoleKey.E);
+                    choixUtilisateur.Key != ConsoleKey.C && choixUtilisateur.Key != ConsoleKey.D );
 
                     if (choixUtilisateur.Key == ConsoleKey.A)
                     {
@@ -251,8 +250,7 @@ namespace Projet_S4__3_
                     {
                         choixUtilisateur = Console.ReadKey(true);
                     }
-                    while (choixUtilisateur.Key != ConsoleKey.A && choixUtilisateur.Key != ConsoleKey.B &&
-                    choixUtilisateur.Key != ConsoleKey.C && choixUtilisateur.Key != ConsoleKey.D && choixUtilisateur.Key != ConsoleKey.E);
+                    while (choixUtilisateur.Key != ConsoleKey.A && choixUtilisateur.Key != ConsoleKey.B);
 
                     if (choixUtilisateur.Key == ConsoleKey.A)
                     {
