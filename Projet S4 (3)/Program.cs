@@ -110,8 +110,22 @@ namespace Projet_S4__3_
 
                     if (choixUtilisateur.Key == ConsoleKey.C)
                     {
+                        int angle;
+                        do
+                        {
+                            Console.WriteLine("Entrez l'angle souhaité");
+                        }
+                        while (!int.TryParse(Console.ReadLine(), out angle));
                         MyImage image = new MyImage(choixImage());
-                        image.Rotation3(0);
+                        angle = angle % 360;
+                        if (angle == 90 || angle == 180 || angle == 270) //permet d'eviter la perte de qualité de l'autre methode, et plus rapide.
+                        {
+                            image.Rotation(angle);
+                        }
+                        else
+                        {
+                            image.Rotation3(angle);
+                        }
                         Process.Start("newimage.bmp");
                     }///Rotations
 

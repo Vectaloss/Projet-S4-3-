@@ -412,34 +412,37 @@ namespace Projet_S4__3_
         }/// Méthode finale pour agrandir une image
         public void Rotation(int angle)
         {
-            Pixel[,] versionFinal = new Pixel[image.GetLength(0), image.GetLength(1)];
+            Pixel[,] versionFinal = null;
             if (angle == 180)
             {
-                for (int i = 0; i <= image.GetLength(0); i++)
+                versionFinal = new Pixel[image.GetLength(0), image.GetLength(1)];
+                for (int i = 0; i < image.GetLength(0); i++)
                 {
-                    for (int j = 0; j <= image.GetLength(1); j++) //voir si (0) ou (1)
+                    for (int j = 0; j < image.GetLength(1); j++) 
                     {
-                        versionFinal[i, j] = image[image.GetLength(0) - i, image.GetLength(1) - j];//ici pareil
+                        versionFinal[i, j] = image[image.GetLength(0) - i-1, image.GetLength(1) - j-1];//ici pareil
                     }
                 }
             }
             else if (angle == 90)
             {
-                for (int i = 0; i <= image.GetLength(0); i++)
+                versionFinal = new Pixel[image.GetLength(1), image.GetLength(0)];
+                for (int i = 0; i < image.GetLength(1); i++)
                 {
-                    for (int j = 0; j <= image.GetLength(1); j++)  //voir si (0) ou (1)
+                    for (int j = 0; j < image.GetLength(0); j++) 
                     {
-                        versionFinal[i, j] = image[j, image.GetLength(1) - i - 1]; //ici pareil
+                        versionFinal[i, j] = image[j, i]; //ici pareil
                     }
                 }
             }
             else if (angle == 270)
             {
-                for (int i = 0; i <= image.GetLength(0); i++)
+                versionFinal = new Pixel[image.GetLength(1), image.GetLength(0)];
+                for (int i = 0; i < image.GetLength(1); i++)
                 {
-                    for (int j = 0; j <= image.GetLength(1); j++) //voir si (0) ou (1)
+                    for (int j = 0; j < image.GetLength(0); j++)  
                     {
-                        versionFinal[i, j] = image[i, image.GetLength(1) - j - 1]; //Je suis pas certain  faut que tu testes 
+                        versionFinal[i, j] = image[image.GetLength(0)- 1 - j, image.GetLength(1) - 1 - i]; //ici pareil
                     }
                 }
             }
@@ -447,6 +450,7 @@ namespace Projet_S4__3_
             {
                 Console.WriteLine("Veuillez choisir entre 90, 180 et 270 degrés.");
             }
+            Enregistrement(versionFinal);
         }/// Il faut faire pour n degrés
         public void Rotation2(int angle)
         {
