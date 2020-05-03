@@ -45,7 +45,7 @@ namespace Projet_S4__3_
         }
         
         /// <summary>
-        /// Main qui permet de lancer toutes les méthodes
+        /// Main qui permet de lancer toutes les méthodes. C'est un menu déroulant
         /// </summary>
         /// <param name="args"></param>
         static void Main(string[] args)
@@ -118,7 +118,7 @@ namespace Projet_S4__3_
                         while (!int.TryParse(Console.ReadLine(), out angle));
                         MyImage image = new MyImage(choixImage());
                         angle = angle % 360;
-                        if (angle == 90 || angle == 180 || angle == 270) //permet d'eviter la perte de qualité de l'autre methode, et plus rapide.
+                        if (angle == 90 || angle == 180 || angle == 270) ///permet d'eviter la perte de qualité de l'autre methode, et plus rapide.
                         {
                             image.Rotation(angle);
                         }

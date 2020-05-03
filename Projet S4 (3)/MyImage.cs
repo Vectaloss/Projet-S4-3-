@@ -69,6 +69,11 @@ namespace Projet_S4__3_
             get { return this.image; }
             set { this.image = value; }
         }
+
+        /// <summary>
+        /// Ce constructeur est utilisé pour lire des images
+        /// </summary>
+        /// <param name="fichier"></param>
         public MyImage(string fichier)
         {
             byte[] myfile = File.ReadAllBytes(fichier);
@@ -95,6 +100,12 @@ namespace Projet_S4__3_
                 this.typeImage = ".bmp";
 
         }
+
+        /// <summary>
+        /// Ce constructeur permet de créer une nouvelle image d'une certain hauteur et largeur
+        /// </summary>
+        /// <param name="largeur"></param>
+        /// <param name="hauteur"></param>
         public MyImage(int largeur, int hauteur)
         {
             this.hauteur = hauteur;
@@ -118,7 +129,7 @@ namespace Projet_S4__3_
         #region Traitement d'image et convertions
 
         /// <summary>
-        /// Méthodes de traitement d'image
+        /// Méthodes qui permet d'enregistrer les différentes images
         /// </summary>
         /// <param name="newimage"></param>
         public void Enregistrement(Pixel[,] newimage)
@@ -133,7 +144,7 @@ namespace Projet_S4__3_
                 newfile[j] = 0;
             }
             int i;
-            newfile[0] = Convert.ToByte(66); //on considère uniquement le bitmap classique ici
+            newfile[0] = Convert.ToByte(66); ///on considère uniquement le bitmap classique ici
             newfile[1] = Convert.ToByte(77);
 
             byte[] tabsize = Convert_Int_To_Endian(newTaille);
@@ -176,6 +187,13 @@ namespace Projet_S4__3_
             }
             File.WriteAllBytes("newimage.bmp", newfile);
         }
+
+        /// <summary>
+        /// Méthode récursive pour calculer la puissance d'un nombre
+        /// </summary>
+        /// <param name="puisance"></param>
+        /// <param name="n"></param>
+        /// <returns></returns>
         public int Puissance(int puisance, int n)
         {
             if (n == 0)
@@ -187,6 +205,11 @@ namespace Projet_S4__3_
                 return puisance * Puissance(puisance, n - 1);
             }
         }
+
+        /// <summary>
+        /// Cette méthode n'est pas utilisée.
+        /// </summary>
+        /// <param name="nom"></param>
         static void Lecture(string nom)
         {
             byte[] myfile = File.ReadAllBytes("C:\\Users\\Arnaud\\Desktop\\images\\" + nom);
@@ -202,6 +225,14 @@ namespace Projet_S4__3_
                 Console.Write(myfile[i] + " ");
             }
         }
+
+        /// <summary>
+        /// Conversion de little endiane en entier
+        /// </summary>
+        /// <param name="tab"></param>
+        /// <param name="debut"></param>
+        /// <param name="fin"></param>
+        /// <returns></returns>
         public int Convert_Endian_To_Int(byte[] tab, int debut, int fin) ///  Conversion little endian en un entier
         {
             int number = 0; // valeur renvoyer pour la taille, la hauter, etc.
@@ -212,18 +243,24 @@ namespace Projet_S4__3_
 
             return number;
         }
+
+        /// <summary>
+        /// Conversion d'un entier dans un format little endian
+        /// </summary>
+        /// <param name="valeur"></param>
+        /// <returns></returns>
         public byte[] Convert_Int_To_Endian(int valeur)
         {
             int a = valeur;
             byte[] tab = new byte[4];
             int Opti = 0;
 
-            //Divisions successives de la valeur de base pour la première opération puis du reste.
+            ///Divisions successives de la valeur de base pour la première opération puis du reste.
             for (int i = 0; i < 4; i++)
-            {//
+            {
                 Opti = Convert.ToInt32(Puissance(2, 8 * ((tab.Length - 1) - i)));
 
-                tab[tab.Length - 1 - i] = Convert.ToByte(a / Opti); // Fin/Début => Little Endian.
+                tab[tab.Length - 1 - i] = Convert.ToByte(a / Opti); /// Fin/Début => Little Endian.
                 a = valeur % Opti;
 
             }
@@ -236,8 +273,9 @@ namespace Projet_S4__3_
         #region Transformation d'image
 
         /// <summary>
-        /// Transformation d'image
+        /// Les méthodes qui permettent de transformer une image
         /// </summary>
+        ///Méthode qui calcul la moyenne du pixel et qui va ensuite affecter O où 255 en fonction d'un seuil.
         public void NoirEtBlanc()
         {
             Pixel[,] noirEtBlanc = new Pixel[image.GetLength(0), image.GetLength(1)];
@@ -260,7 +298,11 @@ namespace Projet_S4__3_
 
             }
             Enregistrement(noirEtBlanc);
-        }///Modifie en Noir et Blanc
+        }
+
+        /// <summary>
+        /// Cette méthode calcul la moyenne des sous pixels et l'affecte à tous les sous pixel pour avoir une image avec des nuances de gris.
+        /// </summary>
         public void NuancesDeGris()
         {
             Pixel[,] gris = new Pixel[image.GetLength(0), image.GetLength(1)]; // nécessaire pour que l'image soit de la même taille
@@ -274,7 +316,11 @@ namespace Projet_S4__3_
                 }
             }
             Enregistrement(gris);
-        }///Modifie en nuances de gris
+        }
+
+        /// <summary>
+         ///Méthode  que l'on utilise pas
+         /// </summary>
         public void Retrecir()
         {
             Pixel[,] deZoom = new Pixel[image.GetLength(0) / 2, image.GetLength(1) / 2]; //Je divise la longueur  par deux
@@ -297,7 +343,12 @@ namespace Projet_S4__3_
                 }
             }
             Enregistrement(deZoom);
-        }///Méthode  que l'on utilise pas
+        }
+
+        /// <summary>
+        /// Permet de rétrécir une image par deux
+        /// </summary>
+        /// <param name="sens"></param>
         public void Retrecicement(bool sens) ///true pour un retrecicement horizontale, false pour verticale.
         {
             int newLarg = this.image.GetLength(0) / 2;
@@ -339,9 +390,11 @@ namespace Projet_S4__3_
                 }
                 Enregistrement(deZoom);
             }
-
-
         }
+
+        /// <summary>
+        /// Notre première méthode pour agrandir  PB : Format non pris en compte. A corriger mais cette méthode n'est pas utilisée
+        /// </summary>
         public void Agrandir()
         {
             Pixel[,] zoom = new Pixel[(image.GetLength(0) * 2) - 1, (image.GetLength(1) * 2) - 1];
@@ -392,7 +445,11 @@ namespace Projet_S4__3_
 
             Enregistrement(zoom);
 
-        }///Format non pris en compte ? A corriger mais cette méthode n'est pas utilisée
+        }
+
+        /// <summary>
+        /// Deuxième méthode Agrandir qui fonctionne 
+        /// </summary>
         public void Agrandir2()
         {
             Pixel[,] blankimage = new Pixel[image.GetLength(0) * 2, image.GetLength(1) * 2];
@@ -409,7 +466,12 @@ namespace Projet_S4__3_
 
             }
             Enregistrement(blankimage);
-        }/// Méthode finale pour agrandir une image
+        }
+
+        /// <summary>
+        /// Première version de rotation d'une image. Seulement pour les angles de 90, 180 et 270
+        /// </summary>
+        /// <param name="angle"></param>
         public void Rotation(int angle)
         {
             Pixel[,] versionFinal = null;
@@ -451,7 +513,11 @@ namespace Projet_S4__3_
                 Console.WriteLine("Veuillez choisir entre 90, 180 et 270 degrés.");
             }
             Enregistrement(versionFinal);
-        }/// Il faut faire pour n degrés
+        }
+        /// <summary>
+        /// Première version de n degrés que nous n'utilisons pas.
+        /// </summary>
+        /// <param name="angle"></param>
         public void Rotation2(int angle)
         {
             /// Nouveau Tableau
@@ -499,8 +565,11 @@ namespace Projet_S4__3_
                     }
                 }
             Enregistrement(copie);
-        }/// N degrés
-
+        }
+        /// <summary>
+        /// Rotation n degrés qui fonctionne bien mais il y a une légère baisse de la qualité.
+        /// </summary>
+        /// <param name="angle"></param>
         public void Rotation3(int angle)
         {
             int diagonale = Convert.ToInt32(Math.Sqrt((hauteur * hauteur) + (largeur * largeur)));
@@ -569,7 +638,9 @@ namespace Projet_S4__3_
             Enregistrement(copie);
         }
 
-
+        /// <summary>
+        /// Cette méthode permet d'inver l'image comme dans un miroir
+        /// </summary>
         public void Miroir()
         {
             Pixel[,] miroir = new Pixel[image.GetLength(0), image.GetLength(1)];
@@ -582,7 +653,8 @@ namespace Projet_S4__3_
                 }
             }
             Enregistrement(miroir);
-        }///Cette méthode permet d'inver l'image comme dans un miroir
+        }
+
         #endregion
 
         #region Matrice de Convolution et Filtres 
@@ -653,6 +725,10 @@ namespace Projet_S4__3_
             }
             return (newimage);
         }
+
+        /// <summary>
+        /// Les différentes matrices de convolution qui  vont transformer l'image.
+        /// </summary>
         public void DetectionContours()
         {
             Enregistrement(Convolution(new int[3, 3] { { 0, 1, 0 }, { 1, -4, 1 }, { 0, 1, 0 } }, image));
@@ -675,7 +751,7 @@ namespace Projet_S4__3_
         #region Fractale et Histogramme
 
         /// <summary>
-        /// Divers : Fractale et Histogramme
+        /// Première méthode pour l'histogramme qui ne fonctionne pas.
         /// </summary>
         public void Histogramme()
         {
@@ -779,8 +855,9 @@ namespace Projet_S4__3_
             }
             Enregistrement(histo.image);
         }
+        
         /// <summary>
-        /// Première méthode pour l'histogramme qui ne fonctionne pas.
+        /// Histogramme d'une image. Cette méthode affich 3 histogrammes. Un pour chaque sous pixel donc RGB.
         /// </summary>
         public void Histogramme2()
         {
@@ -832,8 +909,9 @@ namespace Projet_S4__3_
             }
             Enregistrement(histo.image);
         }
+
         /// <summary>
-        /// Méthode Histogramme finale qui fonctionne
+        /// Cette méthode permet d'afficher l'ensemble de Mandelbrot
         /// </summary>
         public void Fractaleee()
         {
@@ -867,16 +945,13 @@ namespace Projet_S4__3_
             }
 
         }
-        /// <summary>
-        /// Cette méthode permet d'afficher l'ensemble de Mandelbrot
-        /// </summary>
-
+        
         #endregion
 
         #region Innovations
 
         /// <summary>
-        /// Innovation
+        /// Cette première innovation est un filtre qui affiche une image à la Andy Warhol
         /// </summary>
         public void Innovation1()
         {
@@ -889,7 +964,7 @@ namespace Projet_S4__3_
             {
                 for (int j = 0; j < image.GetLength(1); j++)
                 {
-                    int moyenne = (image[i, j].Rouge + image[i, j].Vert + image[i, j].Bleu) / 3; //on réutilise une partie de la fonction nuance de gris
+                    int moyenne = (image[i, j].Rouge + image[i, j].Vert + image[i, j].Bleu) / 3; ///on réutilise une partie de la fonction nuance de gris
                     moyennes[i, j] = moyenne;
                 }
             }
@@ -899,14 +974,18 @@ namespace Projet_S4__3_
             {
                 for (int j = 0; j < haut; j++)
                 {
-                    newimage.image[i, j] = new Pixel(moyennes[i, j], moyennes[i, j] / 5, moyennes[i, j] / 5); //on rajoute de petites valeurs pour que l'image soit plus claire
+                    newimage.image[i, j] = new Pixel(moyennes[i, j], moyennes[i, j] / 5, moyennes[i, j] / 5); ///on rajoute de petites valeurs pour que l'image soit plus claire
                     newimage.image[i + larg, j] = new Pixel(0, moyennes[i, j], 0);
-                    newimage.image[i, j + haut] = new Pixel(moyennes[i, j] / 3, moyennes[i, j] / 3, moyennes[i, j]); //pareil pour le bleu
+                    newimage.image[i, j + haut] = new Pixel(moyennes[i, j] / 3, moyennes[i, j] / 3, moyennes[i, j]); ///pareil pour le bleu
                     newimage.image[i + larg, j + haut] = new Pixel(0, moyennes[i, j], moyennes[i, j]);
                 }
             }
             Enregistrement(newimage.image);
         }
+
+        /// <summary>
+        /// Cette innovation va créer une image avec différentes couleurs et tailles de carrés aléatoirement
+        /// </summary>
         public void Innovation2()
         {
             Random r  = new Random();
